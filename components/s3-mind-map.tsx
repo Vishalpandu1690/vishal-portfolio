@@ -145,11 +145,8 @@ const initiallyOpen = new Set([
   "root",
   "temperatures",
   "classes",
-  "standard",
-  "intelligent-tiering",
-  "standard-ia",
-  "one-zone-ia",
-  "glacier",
+  "optimization",
+  "mistakes",
 ]);
 
 export default function S3MindMap() {
@@ -174,8 +171,8 @@ export default function S3MindMap() {
   }
 
   return (
-    <div className="overflow-x-auto pb-3">
-      <div className="inline-flex min-w-max rounded-[1.5rem] border border-[var(--border)] bg-white/45 p-4">
+    <div className="overflow-x-auto pb-2">
+      <div className="inline-flex min-w-max rounded-[1.25rem] border border-[var(--border)] bg-white/45 p-3">
         <MindMapBranch
           node={tree}
           openIds={openIds}
@@ -197,18 +194,20 @@ function MindMapBranch({ node, openIds, onToggle }: MindMapBranchProps) {
   const isOpen = openIds.has(node.id);
 
   return (
-    <div className="flex items-center gap-6 py-3">
+    <div className="flex items-center gap-3 py-1.5">
       <button
         type="button"
         onClick={() => onToggle(node.id, hasChildren)}
-        className={`relative shrink-0 rounded-xl border px-4 py-3 text-left shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-md ${getNodeTone(
+        className={`relative shrink-0 rounded-lg border px-3 py-2 text-left shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-md ${getNodeTone(
           node.tone,
         )} ${hasChildren ? "cursor-pointer" : "cursor-default"}`}
       >
-        <div className="flex items-center gap-3">
-          <span className="text-sm font-medium leading-5">{node.label}</span>
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-medium leading-5 sm:text-sm">
+            {node.label}
+          </span>
           {hasChildren ? (
-            <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/70 text-xs font-semibold text-slate-700">
+            <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-white/70 text-[10px] font-semibold text-slate-700 sm:h-5 sm:w-5 sm:text-xs">
               {isOpen ? "−" : "+"}
             </span>
           ) : null}
@@ -219,12 +218,12 @@ function MindMapBranch({ node, openIds, onToggle }: MindMapBranchProps) {
         <div
           className={`mindmap-branch overflow-hidden ${isOpen ? "mindmap-branch-open" : "mindmap-branch-closed"}`}
         >
-          <div className="relative flex flex-col gap-3 pl-8">
-            <div className="absolute bottom-3 left-2 top-3 w-px bg-[rgba(14,116,144,0.22)]" />
+          <div className="relative flex flex-col gap-1.5 pl-5 sm:pl-6">
+            <div className="absolute bottom-2 left-1.5 top-2 w-px bg-[rgba(14,116,144,0.22)]" />
 
             {node.children?.map((child) => (
               <div key={child.id} className="relative flex items-center">
-                <div className="absolute left-2 top-1/2 h-px w-6 -translate-y-1/2 bg-[rgba(14,116,144,0.22)]" />
+                <div className="absolute left-1.5 top-1/2 h-px w-4 -translate-y-1/2 bg-[rgba(14,116,144,0.22)] sm:w-5" />
                 <MindMapBranch
                   node={child}
                   openIds={openIds}

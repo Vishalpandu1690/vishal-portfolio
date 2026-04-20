@@ -671,6 +671,53 @@ git commit -m "Add interactive mind map to S3 article"
 git push origin main
 ```
 
+## Mind Map Cleanup
+
+### What changed
+
+The S3 mind map was refined to remove meta-explanatory copy and make the layout more compact.
+
+Files changed:
+
+- [app/blog/s3-storage-classes/page.tsx](/Users/vishalcherupally/Documents/github/vishal-portfolio/app/blog/s3-storage-classes/page.tsx)
+- [components/s3-mind-map.tsx](/Users/vishalcherupally/Documents/github/vishal-portfolio/components/s3-mind-map.tsx)
+- [app/globals.css](/Users/vishalcherupally/Documents/github/vishal-portfolio/app/globals.css)
+
+### Why we changed it
+
+Two issues showed up in the first version:
+
+- the section was over-explaining itself to the reader,
+- and the map was too wide and too spaced out to feel like one coherent frame.
+
+### Fixes made
+
+- Removed the user-facing implementation explanation
+- Simplified the heading
+- Reduced gaps between nodes and branches
+- Reduced node padding
+- Closed deeper branches by default so the initial state fits better
+- Tightened the expansion width so the map stays tidier
+
+### Why this improves UX
+
+- The map feels cleaner
+- The reader sees the concept, not our implementation process
+- The initial frame is easier to understand at a glance
+- Expansion still exists, but the default state is more readable
+
+### Commands to run next
+
+After reviewing locally, commit and push with:
+
+```bash
+cd /Users/vishalcherupally/Documents/github/vishal-portfolio
+git status --short
+git add app/blog/s3-storage-classes/page.tsx components/s3-mind-map.tsx app/globals.css BUILD_NOTES.md
+git commit -m "Tighten S3 mind map layout"
+git push origin main
+```
+
 ## How to Keep Using This File
 
 For every future step, add:

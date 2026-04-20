@@ -65,7 +65,7 @@ body {
 }
 
 .mindmap-branch-open {
-  max-width: 2400px;
+  max-width: 1600px;
   opacity: 1;
   transform: translateX(0) scale(1);
 }

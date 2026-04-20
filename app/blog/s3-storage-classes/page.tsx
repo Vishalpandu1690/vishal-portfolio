@@ -218,17 +218,11 @@ export default function S3StorageClassesBlog() {
               Mind map view
             </p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-[var(--foreground)]">
-              Click the boxes to expand the topic the way a real mind map does.
+              S3 storage classes at a glance
             </h2>
-            <p className="mt-4 leading-7 text-[var(--muted)]">
-              This version is interactive, so readers can open or collapse
-              branches as they explore the topic. It gives the same “show me
-              the structure first” feeling as a NotebookLM-style mind map, but
-              inside your article itself.
-            </p>
           </div>
 
-          <div className="mt-8">
+          <div className="mt-6">
             <S3MindMap />
           </div>
         </section>
