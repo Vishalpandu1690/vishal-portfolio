@@ -718,6 +718,67 @@ git commit -m "Tighten S3 mind map layout"
 git push origin main
 ```
 
+## Compact Mind Map Redesign
+
+### What changed
+
+The S3 mind map was redesigned again from a wide branching tree into a compact hub-and-cluster layout.
+
+Files changed:
+
+- [components/s3-mind-map.tsx](/Users/vishalcherupally/Documents/github/vishal-portfolio/components/s3-mind-map.tsx)
+- [app/globals.css](/Users/vishalcherupally/Documents/github/vishal-portfolio/app/globals.css)
+
+### Why we changed it
+
+Even after spacing fixes, the tree still felt too wide and too stretched to work well inside the article frame.
+
+That meant the interaction was interesting, but the visual was not doing the main job of a mind map:
+
+- helping the reader see the whole topic in one glance.
+
+### New design decision
+
+Instead of trying to imitate the exact wide branch geometry, we kept the useful part:
+
+- click to expand,
+- progressive disclosure,
+- topic grouping.
+
+But we changed the visual structure to:
+
+- one central concept,
+- multiple compact cluster cards,
+- expandable detail inside each cluster.
+
+This makes it feel tidier and more article-friendly.
+
+### Why this improves UX
+
+- Fits better in one frame
+- Feels cleaner on desktop and mobile
+- Keeps interaction without creating visual sprawl
+- Makes the whole topic easier to scan quickly
+
+### Concepts involved
+
+- Compact information architecture
+- Progressive disclosure
+- Interaction design versus literal visual imitation
+- Adapting inspiration instead of copying it exactly
+
+### Commands to run next
+
+After reviewing locally, commit and push with:
+
+```bash
+cd /Users/vishalcherupally/Documents/github/vishal-portfolio
+git status --short
+git add components/s3-mind-map.tsx app/globals.css BUILD_NOTES.md
+git commit -m "Redesign S3 mind map to fit article layout"
+git push origin main
+```
+
 ## How to Keep Using This File
 
 For every future step, add:

@@ -56,25 +56,29 @@ body {
   animation: float-card 6s ease-in-out infinite;
 }
 
-.mindmap-branch {
-  transform-origin: left center;
+.mindmap-cluster-details {
+  overflow: hidden;
   transition:
-    max-width 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    grid-template-rows 280ms cubic-bezier(0.22, 1, 0.36, 1),
     opacity 220ms ease,
-    transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  display: grid;
 }
 
-.mindmap-branch-open {
-  max-width: 1600px;
+.mindmap-cluster-open {
+  grid-template-rows: 1fr;
   opacity: 1;
-  transform: translateX(0) scale(1);
+  transform: translateY(0);
 }
 
-.mindmap-branch-closed {
-  max-width: 0;
+.mindmap-cluster-closed {
+  grid-template-rows: 0fr;
   opacity: 0;
-  transform: translateX(-8px) scale(0.98);
-  pointer-events: none;
+  transform: translateY(-4px);
+}
+
+.mindmap-cluster-details > ul {
+  min-height: 0;
 }
 
 @keyframes fade-up {
