@@ -177,6 +177,89 @@ git commit -m "Add homepage color system and motion"
 git push origin main
 ```
 
+## Homepage Repositioning
+
+### What changed
+
+The homepage messaging in [app/page.tsx](/Users/vishalcherupally/Documents/github/vishal-portfolio/app/page.tsx) was repositioned from a narrow "data engineering" identity into a broader computer science and software learning publication.
+
+### Why we changed it
+
+The previous homepage still framed the site too tightly around data engineering.
+
+That was limiting because the actual long-term plan is broader:
+
+- blogs across computer science, cloud, data, AI/ML, system design, and Python,
+- study materials for deeper understanding,
+- content useful for people preparing for strong product-based companies,
+- and eventually a platform that could grow into something monetizable if the content becomes consistently valuable.
+
+### Strategic homepage decision
+
+The homepage should not feel like a portfolio for one niche.
+It should feel like:
+
+- a serious technical publication,
+- a learning hub,
+- and a place where ambitious learners and engineers can keep coming back.
+
+Projects still matter, but they should now support credibility instead of defining the full identity.
+
+### New homepage structure
+
+The homepage now communicates four things:
+
+1. Broad technical scope
+2. Who the site is for
+3. What topic lanes it will cover
+4. Where a first-time visitor should begin
+
+### New audience framing
+
+We explicitly shaped the homepage for:
+
+- learners building computer science foundations,
+- engineers exploring data and AI/ML,
+- and interview-focused builders aiming for strong product companies.
+
+### New topic lanes
+
+The homepage now signals these future content areas:
+
+- General Computer Science
+- System Design
+- Cloud
+- Data and AI
+- Python Concepts
+- Python Coding
+
+### Concepts involved
+
+- Product positioning
+- Audience design
+- Information architecture
+- Editorial strategy
+- Homepage messaging as a systems problem
+
+### Why this improves UX
+
+- Visitors understand the breadth of the site faster
+- Readers can self-identify with the intended audience
+- The site feels more scalable because the homepage is no longer tied to a single niche
+- The content promise is clearer, which matters for trust, return visits, and future monetization
+
+### Commands to run next
+
+After reviewing locally, commit and push with:
+
+```bash
+cd /Users/vishalcherupally/Documents/github/vishal-portfolio
+git status --short
+git add app/page.tsx BUILD_NOTES.md
+git commit -m "Reposition homepage around broader CS learning"
+git push origin main
+```
+
 ## How to Keep Using This File
 
 For every future step, add:

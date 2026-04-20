@@ -1,44 +1,98 @@
 import Link from "next/link";
 
-const featuredSections = [
+const primarySections = [
   {
-    title: "Projects",
+    title: "Blog Library",
     description:
-      "Case studies from data engineering work, migrations, optimization, and systems thinking.",
-    href: "/projects",
-  },
-  {
-    title: "Writing",
-    description:
-      "Short technical articles that break down concepts like problem-solving patterns and architecture ideas.",
+      "Articles that explain core computer science, cloud, data, AI/ML, system design, and Python in a practical way.",
     href: "/blog",
   },
   {
-    title: "Study Notes",
+    title: "Study Materials",
     description:
-      "A growing knowledge base of concepts I am learning, revising, and turning into practical intuition.",
+      "Structured notes, revision guides, and concept breakdowns for interview prep and deeper understanding.",
     href: "/study",
+  },
+  {
+    title: "Projects",
+    description:
+      "Proof of execution through hands-on work, case studies, and things I have built while learning in public.",
+    href: "/projects",
+  },
+];
+
+const topicLanes = [
+  {
+    title: "General Computer Science",
+    summary:
+      "The science behind computation, software, operating systems, networking, and how machines actually work.",
+  },
+  {
+    title: "System Design",
+    summary:
+      "Scalability, tradeoffs, architecture patterns, distributed systems, and designing systems with clear reasoning.",
+  },
+  {
+    title: "Cloud",
+    summary:
+      "Infrastructure thinking, deployment models, managed services, storage, compute, and reliability concepts.",
+  },
+  {
+    title: "Data and AI",
+    summary:
+      "Data engineering, data science, machine learning, and AI ideas explained from fundamentals to real use cases.",
+  },
+  {
+    title: "Python Concepts",
+    summary:
+      "Language features, problem-solving patterns, core syntax, and how to think clearly in Python.",
+  },
+  {
+    title: "Python Coding",
+    summary:
+      "Hands-on coding practice, clean implementations, and interview-oriented problem-solving walkthroughs.",
+  },
+];
+
+const audienceCards = [
+  {
+    title: "Learners building foundations",
+    summary:
+      "For people who want computer science to feel understandable instead of abstract and overwhelming.",
+  },
+  {
+    title: "Engineers exploring data and AI",
+    summary:
+      "For readers moving across data engineering, machine learning, and practical software systems.",
+  },
+  {
+    title: "Interview-focused builders",
+    summary:
+      "For people aiming at strong product companies and looking for content that sharpens both depth and execution.",
   },
 ];
 
 const startHereLinks = [
   {
-    label: "Featured project",
-    title: "Hive to Unity Catalog Migration",
-    summary: "A migration story centered on automation, large codebases, and safer platform changes.",
-    href: "/projects",
-  },
-  {
-    label: "Featured article",
-    title: "Mastering Sliding Window Technique in Python",
-    summary: "A clean introduction to one of the most useful interview and problem-solving patterns.",
-    href: "/blog/sliding-window-technique",
-  },
-  {
-    label: "Currently exploring",
-    title: "System design for data and backend systems",
-    summary: "Studying how scalable systems are shaped through tradeoffs, constraints, and architecture decisions.",
+    label: "Start with foundations",
+    title: "General CS, Python, and core problem-solving",
+    summary:
+      "Use the blog and study sections to build strong intuition before going deeper into systems and data.",
     href: "/study",
+  },
+  {
+    label: "Go deeper",
+    title: "System design, cloud, and architecture thinking",
+    summary:
+      "Learn how software scales, why tradeoffs matter, and how strong systems are reasoned about.",
+    href: "/blog",
+  },
+  {
+    label: "See execution",
+    title: "Projects and applied engineering work",
+    summary:
+      "Read case studies and real builds to connect theory with implementation and engineering judgment.",
+    href: "/projects",
   },
 ];
 
@@ -53,14 +107,15 @@ export default function Home() {
             </p>
 
             <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-[var(--foreground)] sm:text-5xl lg:text-6xl">
-              Data engineering, system design, and technical writing shaped by
-              learning in public.
+              Computer science, systems, Python, and data explained with
+              clarity for builders who want depth.
             </h1>
 
             <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">
-              I build and study scalable systems, document what I learn, and
-              turn complex backend and data concepts into something practical,
-              clear, and worth exploring.
+              This is a learning-first technical publication for people curious
+              about software, system design, cloud, data, AI/ML, and coding for
+              strong engineering roles. The goal is simple: make serious topics
+              useful, practical, and worth returning to.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
@@ -72,10 +127,10 @@ export default function Home() {
               </Link>
 
               <Link
-                href="/projects"
+                href="/study"
                 className="rounded-full border border-[var(--border)] bg-white/70 px-5 py-3 text-sm font-medium text-[var(--foreground)] backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:border-[var(--accent)] hover:bg-[var(--surface)]"
               >
-                Explore projects
+                Open study materials
               </Link>
             </div>
           </div>
@@ -85,15 +140,15 @@ export default function Home() {
               What this site is becoming
             </p>
             <ul className="mt-4 space-y-4 text-sm leading-6 text-[var(--foreground)]">
-              <li>A portfolio that explains the thinking behind the work.</li>
-              <li>A technical blog for Python, data engineering, and systems.</li>
-              <li>A personal learning lab built by shipping in public.</li>
+              <li>A technical publication around computer science and software.</li>
+              <li>A useful resource for data, AI/ML, cloud, and system design.</li>
+              <li>A learning platform for interview prep and long-term depth.</li>
             </ul>
           </aside>
         </section>
 
         <section className="grid gap-6 md:grid-cols-3">
-          {featuredSections.map((section) => (
+          {primarySections.map((section) => (
             <Link
               key={section.title}
               href={section.href}
@@ -115,18 +170,67 @@ export default function Home() {
           ))}
         </section>
 
+        <section className="grid gap-4 md:grid-cols-3">
+          {audienceCards.map((item) => (
+            <article
+              key={item.title}
+              className="animate-fade-up-slow rounded-[1.75rem] border border-[var(--border)] bg-white/65 p-5 shadow-[0_12px_30px_rgba(15,23,32,0.04)] backdrop-blur-sm"
+            >
+              <p className="text-sm font-semibold text-[var(--foreground)]">
+                {item.title}
+              </p>
+              <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
+                {item.summary}
+              </p>
+            </article>
+          ))}
+        </section>
+
+        <section className="animate-fade-up-slow">
+          <div className="max-w-3xl">
+            <p className="text-sm font-medium uppercase tracking-[0.2em] text-[var(--muted)]">
+              Topic map
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-[var(--foreground)]">
+              The homepage should signal breadth, but the content should still
+              feel organized.
+            </h2>
+            <p className="mt-4 text-sm leading-6 text-[var(--muted)]">
+              These are the core lanes the site will grow into over time. They
+              set expectations for the kind of writing and study material
+              readers will find here.
+            </p>
+          </div>
+
+          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {topicLanes.map((lane) => (
+              <article
+                key={lane.title}
+                className="rounded-[1.75rem] border border-[var(--border)] bg-[rgba(251,252,250,0.82)] p-5 shadow-[0_18px_40px_rgba(15,23,32,0.04)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-[var(--accent)]"
+              >
+                <h3 className="text-xl font-semibold text-[var(--foreground)]">
+                  {lane.title}
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
+                  {lane.summary}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section className="animate-fade-up-slow rounded-[2rem] border border-[rgba(10,68,65,0.22)] bg-[linear-gradient(135deg,#0f1720_0%,#123a3d_52%,#115e59_100%)] px-6 py-8 text-white shadow-[0_28px_90px_rgba(10,20,30,0.22)] sm:px-8 sm:py-10">
           <div className="max-w-2xl">
             <p className="text-sm font-medium uppercase tracking-[0.2em] text-teal-100/70">
               Start here
             </p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight">
-              If you are visiting for the first time, these are the best entry
-              points.
+              If the site grows into a useful learning hub, these are the paths
+              people should take first.
             </h2>
             <p className="mt-4 text-sm leading-6 text-slate-200">
-              The goal is to make the site useful whether you want to read,
-              evaluate my work, or follow what I am learning next.
+              The homepage now aims to speak to learners, engineers, and
+              interview-focused readers without boxing the site into one niche.
             </p>
           </div>
 
