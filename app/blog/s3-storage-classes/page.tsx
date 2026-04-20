@@ -1,4 +1,5 @@
 import Link from "next/link";
+import S3MindMap from "@/components/s3-mind-map";
 
 const quickModel = [
   {
@@ -208,6 +209,27 @@ export default function S3StorageClassesBlog() {
                 ))}
               </tbody>
             </table>
+          </div>
+        </section>
+
+        <section className="mt-10 rounded-[1.75rem] border border-[var(--border)] bg-[linear-gradient(180deg,rgba(251,252,250,0.96),rgba(232,243,241,0.78))] p-6 shadow-[0_18px_50px_rgba(15,23,32,0.04)] sm:p-8">
+          <div className="max-w-2xl">
+            <p className="text-xs uppercase tracking-[0.18em] text-[var(--muted)]">
+              Mind map view
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight text-[var(--foreground)]">
+              Click the boxes to expand the topic the way a real mind map does.
+            </h2>
+            <p className="mt-4 leading-7 text-[var(--muted)]">
+              This version is interactive, so readers can open or collapse
+              branches as they explore the topic. It gives the same “show me
+              the structure first” feeling as a NotebookLM-style mind map, but
+              inside your article itself.
+            </p>
+          </div>
+
+          <div className="mt-8">
+            <S3MindMap />
           </div>
         </section>
 

@@ -554,6 +554,123 @@ git commit -m "Publish S3 article in cloud blog"
 git push origin main
 ```
 
+## NotebookLM-Inspired Mind Map For S3
+
+### What changed
+
+A new mind-map-style visual section was added to the S3 article in [app/blog/s3-storage-classes/page.tsx](/Users/vishalcherupally/Documents/github/vishal-portfolio/app/blog/s3-storage-classes/page.tsx).
+
+### Why we changed it
+
+The goal was to bring in the same "see the whole topic at a glance" feeling that NotebookLM mind maps give, but in a way that works natively inside the website.
+
+Instead of trying to embed NotebookLM directly, we created a static, article-friendly version tailored to the S3 topic.
+
+### Design decision
+
+We used a custom visual section with:
+
+- one central concept card,
+- multiple branch cards,
+- grouped ideas like hot data, archive choices, and lifecycle automation,
+- and clear visual chunking instead of a plain paragraph explanation.
+
+This approach is better for the site because it is:
+
+- easier to style,
+- easier to maintain,
+- and easier to reuse across future technical articles.
+
+### Why this improves UX
+
+- Readers can understand the entire S3 topic faster
+- The article feels more visual and memorable
+- The page becomes more engaging without needing decorative images
+- The structure invites scanning before deep reading
+
+### Concepts involved
+
+- Visual information architecture
+- Technical education through diagrams
+- Turning dense topics into skimmable structures
+- Reusable article patterns
+
+### Commands to run next
+
+After reviewing locally, commit and push with:
+
+```bash
+cd /Users/vishalcherupally/Documents/github/vishal-portfolio
+git status --short
+git add app/blog/s3-storage-classes/page.tsx BUILD_NOTES.md
+git commit -m "Add mind map section to S3 article"
+git push origin main
+```
+
+## Interactive Mind Map Upgrade
+
+### What changed
+
+The S3 article was upgraded from a static mind-map-inspired section to an interactive expandable map.
+
+Files changed:
+
+- [components/s3-mind-map.tsx](/Users/vishalcherupally/Documents/github/vishal-portfolio/components/s3-mind-map.tsx)
+- [app/blog/s3-storage-classes/page.tsx](/Users/vishalcherupally/Documents/github/vishal-portfolio/app/blog/s3-storage-classes/page.tsx)
+- [app/globals.css](/Users/vishalcherupally/Documents/github/vishal-portfolio/app/globals.css)
+
+### Why we changed it
+
+The NotebookLM reference showed a stronger interaction model:
+
+- boxes can be clicked,
+- branches expand and collapse,
+- and the topic feels explorable instead of just visually summarized.
+
+The earlier static version captured the idea, but not the experience.
+
+### Implementation approach
+
+We built a custom client-side component with:
+
+- nested tree data,
+- expandable nodes,
+- simple branch connectors,
+- animated reveal and collapse,
+- and a horizontally explorable layout.
+
+This is not a direct clone of NotebookLM, but it aims for the same learning effect:
+
+- reveal the big picture first,
+- then let readers progressively expand detail.
+
+### Why this improves UX
+
+- The article becomes more interactive
+- Readers can explore the structure at their own pace
+- The visual feels closer to a true mind map
+- The pattern can be reused for future technical articles
+
+### Concepts involved
+
+- Client components in Next.js
+- Local interaction state
+- Recursive UI rendering
+- Information architecture through expandable trees
+- Animation for progressive disclosure
+
+### Commands to run next
+
+After reviewing locally, commit and push with:
+
+```bash
+cd /Users/vishalcherupally/Documents/github/vishal-portfolio
+git status --short
+git add components/s3-mind-map.tsx app/blog/s3-storage-classes/page.tsx app/globals.css BUILD_NOTES.md
+git commit -m "Add interactive mind map to S3 article"
+git push origin main
+```
+
 ## How to Keep Using This File
 
 For every future step, add:
