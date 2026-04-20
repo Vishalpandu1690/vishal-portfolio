@@ -421,6 +421,75 @@ git commit -m "Organize blog by category"
 git push origin main
 ```
 
+## S3 Storage Classes Article Upgrade
+
+### What changed
+
+The draft in [s3_storage_classes](/Users/vishalcherupally/Documents/github/vishal-portfolio/s3_storage_classes) was rewritten into a more structured, engaging long-form article.
+
+### Why we changed it
+
+The original draft already had a strong idea and a good storytelling instinct, especially the "home storage" metaphor.
+
+What it needed was:
+
+- stronger pacing,
+- clearer structure,
+- more memorable humor,
+- a better decision framework,
+- and more "reader payoff" so it feels like an article people would actually finish and share.
+
+### Editorial decisions
+
+The rewrite kept the original narrative spirit, but improved it by adding:
+
+- a stronger opening hook,
+- a simpler temperature-based mental model,
+- a quick comparison table,
+- cleaner sectioning for each storage class,
+- small moments of humor without turning the article into a joke,
+- common mistakes,
+- a practical decision guide,
+- and a one-screen summary diagram.
+
+### Why this improves the article
+
+- The reader gets value early
+- The article is easier to scan
+- The analogies are more consistent
+- The content works for both beginners and more experienced readers
+- The humor makes the piece feel human without weakening the technical explanation
+
+### Concepts involved
+
+- Technical writing
+- Information pacing
+- Reader engagement
+- Narrative explanation
+- Teaching through analogy
+- "Explain, compare, decide" article structure
+
+### Important note
+
+Instead of adding random decorative images, the article uses:
+
+- a comparison table,
+- and a Mermaid diagram
+
+because those are more useful than generic pictures for this topic.
+
+### Commands to run next
+
+After reviewing locally, commit and push with:
+
+```bash
+cd /Users/vishalcherupally/Documents/github/vishal-portfolio
+git status --short
+git add s3_storage_classes BUILD_NOTES.md
+git commit -m "Rewrite S3 storage classes article"
+git push origin main
+```
+
 ## How to Keep Using This File
 
 For every future step, add:
