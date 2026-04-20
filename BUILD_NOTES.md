@@ -260,6 +260,68 @@ git commit -m "Reposition homepage around broader CS learning"
 git push origin main
 ```
 
+## Homepage Refinement
+
+### What changed
+
+Two homepage refinements were made in [app/page.tsx](/Users/vishalcherupally/Documents/github/vishal-portfolio/app/page.tsx):
+
+- the `Topic map` section was removed,
+- the hero heading was simplified.
+
+### Why we changed it
+
+The `Topic map` section was useful for internal thinking, but it was too explicit for the homepage.
+
+That kind of content taxonomy is better handled through:
+
+- blog categories,
+- navigation,
+- archive pages,
+- or study section structure.
+
+The homepage should create interest and direction, not explain the entire internal content plan.
+
+The previous hero heading also felt too heavy and too long. The revised heading is broader, simpler, and closer to the intended identity of the site.
+
+### New heading direction
+
+The homepage now uses:
+
+`The science behind computers, software, data, and Python.`
+
+This works better because it:
+
+- broadens the identity beyond data engineering,
+- sounds more foundational and timeless,
+- and leaves room for computer science, systems, cloud, AI/ML, and coding content.
+
+### Concepts involved
+
+- Homepage messaging
+- Information density control
+- Content architecture versus homepage storytelling
+- Simplicity in product communication
+
+### Why this improves UX
+
+- The homepage feels less crowded
+- The main idea is easier to understand quickly
+- Visitors are not overloaded with the internal content structure too early
+- The page becomes more intriguing and less explanatory
+
+### Commands to run next
+
+After reviewing locally, commit and push with:
+
+```bash
+cd /Users/vishalcherupally/Documents/github/vishal-portfolio
+git status --short
+git add app/page.tsx BUILD_NOTES.md
+git commit -m "Refine homepage messaging"
+git push origin main
+```
+
 ## How to Keep Using This File
 
 For every future step, add:
