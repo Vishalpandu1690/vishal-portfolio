@@ -490,6 +490,70 @@ git commit -m "Rewrite S3 storage classes article"
 git push origin main
 ```
 
+## Moving S3 Into The Cloud Blog
+
+### What changed
+
+The standalone draft file [s3_storage_classes](/Users/vishalcherupally/Documents/github/vishal-portfolio/s3_storage_classes) was moved into the actual blog as a real Cloud article.
+
+Files changed:
+
+- [app/blog/s3-storage-classes/page.tsx](/Users/vishalcherupally/Documents/github/vishal-portfolio/app/blog/s3-storage-classes/page.tsx)
+- [lib/blog.ts](/Users/vishalcherupally/Documents/github/vishal-portfolio/lib/blog.ts)
+
+The loose draft file was deleted so the article now lives in the same structure as the rest of the site.
+
+### Why we changed it
+
+The article was good, but it was still outside the actual blog system.
+
+That meant:
+
+- it would not show up on the blog index,
+- it would not appear under the Cloud category,
+- and the content source of truth would be split between "real blog pages" and random draft files.
+
+Moving it into the blog makes the architecture cleaner and the content easier to scale.
+
+### Product decision
+
+If an article is ready enough to publish, it should live inside the site structure:
+
+- it gets a permanent route,
+- it appears in the right category,
+- and readers can discover it through the normal browsing flow.
+
+### What the new article page includes
+
+- Cloud category backlink
+- article-style hero section
+- structured sections instead of a raw text dump
+- a quick comparison table
+- memorable analogies
+- practical decision questions
+- common mistakes section
+- cleaner reading layout
+
+### Why this improves UX
+
+- The S3 article is now discoverable through the blog
+- Cloud readers can find it naturally through category navigation
+- The blog feels more real because it now has category depth beyond Python coding posts
+- The content is now stored where future readers expect it to be
+
+### Commands to run next
+
+After reviewing locally, commit and push with:
+
+```bash
+cd /Users/vishalcherupally/Documents/github/vishal-portfolio
+git status --short
+git add app/blog/s3-storage-classes/page.tsx lib/blog.ts BUILD_NOTES.md
+git rm s3_storage_classes
+git commit -m "Publish S3 article in cloud blog"
+git push origin main
+```
+
 ## How to Keep Using This File
 
 For every future step, add:

@@ -57,6 +57,16 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "s3-storage-classes",
+    title: "Amazon S3 Storage Classes Explained",
+    excerpt:
+      "A practical and entertaining guide to S3 Standard, Intelligent-Tiering, IA, and Glacier classes using memorable analogies and decision rules.",
+    category: "cloud",
+    publishedAt: "Apr 2026",
+    readingTime: "12 min read",
+    featured: true,
+  },
+  {
     slug: "two-pointer-technique",
     title: "Mastering Two Pointer Technique in Python",
     excerpt:
@@ -73,7 +83,6 @@ export const blogPosts: BlogPost[] = [
     category: "python-coding",
     publishedAt: "Apr 2026",
     readingTime: "6 min read",
-    featured: true,
   },
 ];
 
