@@ -1,30 +1,47 @@
+import Link from "next/link";
+
 export default function SlidingWindowBlog() {
-    return (
-      <main className="p-10 max-w-3xl mx-auto">
-        <h1 className="text-3xl font-bold mb-4">
+  return (
+    <main className="px-6 py-16 sm:px-10">
+      <article className="mx-auto max-w-3xl">
+        <Link
+          href="/blog/category/python-coding"
+          className="text-sm font-medium text-[var(--accent)] transition hover:text-[var(--accent-strong)]"
+        >
+          Python Coding
+        </Link>
+
+        <h1 className="mt-6 text-3xl font-bold tracking-tight text-[var(--foreground)] sm:text-4xl">
           Mastering Sliding Window Technique in Python
         </h1>
-  
-        <p className="text-gray-500 mb-6">
-          A powerful pattern to optimize problems involving subarrays and substrings.
+
+        <p className="mt-4 text-base leading-7 text-[var(--muted)]">
+          A powerful pattern to optimize problems involving subarrays and
+          substrings.
         </p>
-  
-        <h2 className="text-xl font-semibold mt-6 mb-2">What is Sliding Window?</h2>
-        <p className="text-gray-700">
+
+        <h2 className="mt-8 text-xl font-semibold text-[var(--foreground)]">
+          What is Sliding Window?
+        </h2>
+        <p className="mt-3 leading-7 text-[var(--muted)]">
           Sliding window is a technique where we maintain a window (subarray)
           and move it step-by-step instead of recomputing values repeatedly.
         </p>
-  
-        <h2 className="text-xl font-semibold mt-6 mb-2">Why Use It?</h2>
-        <ul className="list-disc pl-6 text-gray-700">
+
+        <h2 className="mt-8 text-xl font-semibold text-[var(--foreground)]">
+          Why Use It?
+        </h2>
+        <ul className="mt-3 list-disc pl-6 leading-7 text-[var(--muted)]">
           <li>Reduces time complexity</li>
           <li>Avoids nested loops</li>
           <li>Efficient for contiguous subarrays</li>
         </ul>
-  
-        <h2 className="text-xl font-semibold mt-6 mb-2">Fixed Window Example</h2>
-  
-        <pre className="bg-gray-100 p-4 rounded mt-4 overflow-x-auto">
+
+        <h2 className="mt-8 text-xl font-semibold text-[var(--foreground)]">
+          Fixed Window Example
+        </h2>
+
+        <pre className="mt-5 overflow-x-auto rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface)] p-4 text-sm">
   {`def max_sum_subarray(arr, k):
       window_sum = sum(arr[:k])
       max_sum = window_sum
@@ -36,10 +53,12 @@ export default function SlidingWindowBlog() {
   
       return max_sum`}
         </pre>
-  
-        <h2 className="text-xl font-semibold mt-6 mb-2">Variable Window Example</h2>
-  
-        <pre className="bg-gray-100 p-4 rounded mt-4 overflow-x-auto">
+
+        <h2 className="mt-8 text-xl font-semibold text-[var(--foreground)]">
+          Variable Window Example
+        </h2>
+
+        <pre className="mt-5 overflow-x-auto rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface)] p-4 text-sm">
   {`def longest_substring(s):
       seen = set()
       left = 0
@@ -55,21 +74,26 @@ export default function SlidingWindowBlog() {
   
       return max_len`}
         </pre>
-  
-        <h2 className="text-xl font-semibold mt-6 mb-2">Common Patterns</h2>
-        <ul className="list-disc pl-6 text-gray-700">
+
+        <h2 className="mt-8 text-xl font-semibold text-[var(--foreground)]">
+          Common Patterns
+        </h2>
+        <ul className="mt-3 list-disc pl-6 leading-7 text-[var(--muted)]">
           <li>Fixed window size (k)</li>
           <li>Variable window size</li>
           <li>Substring problems</li>
           <li>Maximum / minimum window</li>
         </ul>
-  
-        <h2 className="text-xl font-semibold mt-6 mb-2">When to Use</h2>
-        <ul className="list-disc pl-6 text-gray-700">
+
+        <h2 className="mt-8 text-xl font-semibold text-[var(--foreground)]">
+          When to Use
+        </h2>
+        <ul className="mt-3 list-disc pl-6 leading-7 text-[var(--muted)]">
           <li>Contiguous subarrays</li>
           <li>Strings and substrings</li>
           <li>Optimization problems</li>
         </ul>
-      </main>
-    );
-  }
+      </article>
+    </main>
+  );
+}

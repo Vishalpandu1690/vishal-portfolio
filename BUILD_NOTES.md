@@ -322,6 +322,105 @@ git commit -m "Refine homepage messaging"
 git push origin main
 ```
 
+## Blog Category Architecture
+
+### What changed
+
+The blog was restructured around categories instead of a flat list of links.
+
+Files changed:
+
+- [lib/blog.ts](/Users/vishalcherupally/Documents/github/vishal-portfolio/lib/blog.ts)
+- [app/blog/page.tsx](/Users/vishalcherupally/Documents/github/vishal-portfolio/app/blog/page.tsx)
+- [app/blog/category/[slug]/page.tsx](/Users/vishalcherupally/Documents/github/vishal-portfolio/app/blog/category/[slug]/page.tsx)
+- [app/blog/two-pointer-technique/page.tsx](/Users/vishalcherupally/Documents/github/vishal-portfolio/app/blog/two-pointer-technique/page.tsx)
+- [app/blog/sliding-window-technique/page.tsx](/Users/vishalcherupally/Documents/github/vishal-portfolio/app/blog/sliding-window-technique/page.tsx)
+
+### Why we changed it
+
+The site plan now clearly includes multiple writing lanes:
+
+- General CS
+- Data
+- Cloud
+- AI / ML
+- System Design
+- Python Concepts
+- Python Coding
+
+A flat blog index would get messy as soon as more posts are added.
+For example, an article like `S3 storage classes` belongs under `Cloud`, and the site should already know how to represent that.
+
+### Architecture decision
+
+We introduced a small shared content model in `lib/blog.ts`.
+
+This file now stores:
+
+- the list of categories,
+- the list of blog posts,
+- helper functions to fetch category-specific posts.
+
+This is a good intermediate step before a larger content system like MDX or a CMS because it teaches structure without adding too much complexity too early.
+
+### New blog behavior
+
+The main blog page now does three things:
+
+1. highlights a featured article,
+2. shows all categories as dedicated entry points,
+3. lists currently published posts with their category, date, and reading time.
+
+### New category pages
+
+Each category now has its own route:
+
+- `/blog/category/general-cs`
+- `/blog/category/data`
+- `/blog/category/cloud`
+- `/blog/category/ai-ml`
+- `/blog/category/system-design`
+- `/blog/category/python-concepts`
+- `/blog/category/python-coding`
+
+If a category has no posts yet, the page still exists and communicates that the section is ready for future content.
+
+### Existing post updates
+
+The existing posts were updated to feel connected to the new architecture:
+
+- category link added at the top,
+- typography aligned with the newer visual system,
+- code blocks styled consistently with the rest of the site.
+
+### Concepts involved
+
+- Content modeling
+- Separation of content and presentation
+- Dynamic routing
+- `generateStaticParams`
+- Category-based information architecture
+- Designing for future scale before content volume becomes messy
+
+### Why this improves UX
+
+- Readers can browse by interest instead of only by publish order
+- The blog feels more organized and scalable
+- New topic lanes like `Cloud` can exist before posts are published
+- Future posts such as `S3 storage classes` can slot into the right section naturally
+
+### Commands to run next
+
+After reviewing locally, commit and push with:
+
+```bash
+cd /Users/vishalcherupally/Documents/github/vishal-portfolio
+git status --short
+git add lib/blog.ts app/blog/page.tsx 'app/blog/category/[slug]/page.tsx' app/blog/two-pointer-technique/page.tsx app/blog/sliding-window-technique/page.tsx BUILD_NOTES.md
+git commit -m "Organize blog by category"
+git push origin main
+```
+
 ## How to Keep Using This File
 
 For every future step, add:
