@@ -7,34 +7,6 @@ const takeaways = [
   "Let the invariant explain the stopping condition.",
 ];
 
-const hallwaySteps = [
-  {
-    label: "You",
-    value: "h",
-    side: "left",
-  },
-  {
-    label: "Object",
-    value: "e",
-    side: "middle",
-  },
-  {
-    label: "Object",
-    value: "l",
-    side: "middle",
-  },
-  {
-    label: "Object",
-    value: "l",
-    side: "middle",
-  },
-  {
-    label: "Friend",
-    value: "o",
-    side: "right",
-  },
-];
-
 export default function TwoPointerBlog() {
   return (
     <main className="px-6 py-16 sm:px-10">
@@ -114,45 +86,15 @@ export default function TwoPointerBlog() {
             </p>
           </div>
 
-          <div className="overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[linear-gradient(135deg,#0f1720_0%,#123a3d_52%,#115e59_100%)] p-6 text-white shadow-[0_28px_90px_rgba(10,20,30,0.18)]">
-            <p className="text-xs uppercase tracking-[0.18em] text-teal-100/70">
+          <div className="overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-white/80 p-4 shadow-[0_18px_50px_rgba(15,23,32,0.04)]">
+            <p className="text-xs uppercase tracking-[0.18em] text-[var(--muted)]">
               Hallway picture
             </p>
-            <div className="mt-5 rounded-[1.25rem] border border-white/10 bg-white/8 p-4">
-              <div className="flex items-center justify-between gap-2">
-                {hallwaySteps.map((step) => (
-                  <div
-                    key={`${step.label}-${step.value}`}
-                    className="flex min-w-0 flex-1 flex-col items-center gap-2"
-                  >
-                    <div
-                      className={`flex h-12 w-12 items-center justify-center rounded-2xl border text-lg font-semibold ${
-                        step.side === "left"
-                          ? "animate-pointer-left border-emerald-200 bg-emerald-100 text-emerald-950"
-                          : step.side === "right"
-                            ? "animate-pointer-right border-sky-200 bg-sky-100 text-sky-950"
-                            : "border-white/10 bg-white/10 text-white"
-                      }`}
-                    >
-                      {step.value}
-                    </div>
-                    <p className="text-center text-[11px] uppercase tracking-[0.14em] text-slate-300">
-                      {step.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-5 grid gap-3 text-sm leading-6 text-slate-200 sm:grid-cols-2">
-                <p>
-                  <strong className="text-emerald-100">left</strong> is you,
-                  standing at the first unresolved character.
-                </p>
-                <p>
-                  <strong className="text-sky-100">right</strong> is your
-                  friend, standing at the last unresolved character.
-                </p>
-              </div>
-            </div>
+            <img
+              src="/two-pointer-hallway.svg"
+              alt="Two friends walking from opposite ends of a hallway to explain left and right pointers."
+              className="mt-4 w-full rounded-[1.25rem]"
+            />
           </div>
         </section>
 
@@ -182,21 +124,28 @@ export default function TwoPointerBlog() {
               </div>
             </div>
             <pre className="overflow-x-auto p-5 font-mono text-sm leading-7 text-slate-100">
-<code>{`from typing import List
+<code>
+<span className="text-purple-300">from</span> <span className="text-sky-300">typing</span> <span className="text-purple-300">import</span> <span className="text-emerald-300">List</span>{`
 
+`}
+<span className="text-purple-300">class</span> <span className="text-amber-200">Solution</span>:{`
+    `}
+<span className="text-purple-300">def</span> <span className="text-sky-300">reverseString</span>(<span className="text-orange-200">self</span>, s: <span className="text-emerald-300">List</span>[<span className="text-sky-200">str</span>]) -&gt; <span className="text-purple-300">None</span>:{`
+        `}
+<span className="text-slate-400"># You start at the left end. Your friend starts at the right end.</span>{`
+        left, right = `}<span className="text-cyan-200">0</span>{`, `}<span className="text-sky-300">len</span>(s) - <span className="text-cyan-200">1</span>{`
 
-class Solution:
-    def reverseString(self, s: List[str]) -> None:
-        # You start at the left end of the hallway.
-        left, right = 0, len(s) - 1
-
-        while left < right:
-            # You and your friend swap the objects you are standing on.
+        `}
+<span className="text-purple-300">while</span>{` left < right:
+            `}
+<span className="text-slate-400"># Swap the objects both of you are standing on.</span>{`
             s[left], s[right] = s[right], s[left]
 
-            # Both of you move closer. The outside is now solved.
-            left += 1
-            right -= 1`}</code>
+            `}
+<span className="text-slate-400"># Both move closer. Everything outside is now solved.</span>{`
+            left += `}<span className="text-cyan-200">1</span>{`
+            right -= `}<span className="text-cyan-200">1</span>
+</code>
             </pre>
           </div>
 

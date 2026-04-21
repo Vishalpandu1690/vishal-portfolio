@@ -910,6 +910,54 @@ git commit -m "Refine two pointer article visuals"
 git push origin main
 ```
 
+## Two Pointer Code And Illustration Refinement
+
+### What changed
+
+The Two Pointer article was refined again to better match the intended learning experience.
+
+Files changed:
+
+- [app/blog/two-pointer-technique/page.tsx](/Users/vishalcherupally/Documents/github/vishal-portfolio/app/blog/two-pointer-technique/page.tsx)
+- [public/two-pointer-hallway.svg](/Users/vishalcherupally/Documents/github/vishal-portfolio/public/two-pointer-hallway.svg)
+
+### Why we changed it
+
+The previous version improved the code block background, but the real issue was that the code still did not visually feel like Python code.
+
+Also, the article described a hallway and two friends, but the page needed an actual visual illustration to support that analogy.
+
+### Fixes made
+
+- Added a custom hallway SVG illustration
+- Replaced the basic hallway boxes with the new illustration
+- Added manual Python-style syntax coloring inside the code block
+- Connected the code comments directly to the hallway analogy
+- Kept the article focused on teaching, not just decoration
+
+### Why this improves UX
+
+- The visual analogy is now easier to understand
+- The code feels more like a real Python snippet
+- The reader can connect `left` with "you" and `right` with "your friend"
+- The article becomes more memorable and less text-only
+
+### Future improvement
+
+Manual syntax coloring works for this article, but a real syntax-highlighting library would scale better once the site has many coding articles.
+
+### Commands to run next
+
+After reviewing locally, commit and push with:
+
+```bash
+cd /Users/vishalcherupally/Documents/github/vishal-portfolio
+git status --short
+git add app/blog/two-pointer-technique/page.tsx public/two-pointer-hallway.svg BUILD_NOTES.md
+git commit -m "Improve two pointer code and illustration"
+git push origin main
+```
+
 ## How to Keep Using This File
 
 For every future step, add:
