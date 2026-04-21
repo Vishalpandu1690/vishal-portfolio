@@ -56,6 +56,14 @@ body {
   animation: float-card 6s ease-in-out infinite;
 }
 
+.animate-pointer-left {
+  animation: pointer-left 3.4s ease-in-out infinite;
+}
+
+.animate-pointer-right {
+  animation: pointer-right 3.4s ease-in-out infinite;
+}
+
 .mindmap-cluster-details {
   overflow: hidden;
   transition:
@@ -101,6 +109,28 @@ body {
 
   50% {
     transform: translateY(-6px);
+  }
+}
+
+@keyframes pointer-left {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(8px);
+  }
+}
+
+@keyframes pointer-right {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(-8px);
   }
 }
 

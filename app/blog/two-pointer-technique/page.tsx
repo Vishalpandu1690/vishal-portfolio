@@ -1,37 +1,38 @@
 import Link from "next/link";
 
-const ladder = [
-  {
-    title: "Reverse String",
-    lesson: "Move both pointers every time.",
-  },
-  {
-    title: "Valid Palindrome",
-    lesson: "Sometimes skip one pointer.",
-  },
-  {
-    title: "Is Subsequence",
-    lesson: "Both pointers move in one direction.",
-  },
-  {
-    title: "Two Sum II",
-    lesson: "Sorted order tells us which pointer to move.",
-  },
-  {
-    title: "Container With Most Water",
-    lesson: "Greedy pointer choice enters the picture.",
-  },
-  {
-    title: "Trapping Rain Water",
-    lesson: "Movement depends on boundary confidence.",
-  },
-];
-
 const takeaways = [
   "Place sentinels at the boundaries.",
   "Shrink the unknown region without breaking correctness.",
   "Trust completed work and never revisit it.",
   "Let the invariant explain the stopping condition.",
+];
+
+const hallwaySteps = [
+  {
+    label: "You",
+    value: "h",
+    side: "left",
+  },
+  {
+    label: "Object",
+    value: "e",
+    side: "middle",
+  },
+  {
+    label: "Object",
+    value: "l",
+    side: "middle",
+  },
+  {
+    label: "Object",
+    value: "l",
+    side: "middle",
+  },
+  {
+    label: "Friend",
+    value: "o",
+    side: "right",
+  },
 ];
 
 export default function TwoPointerBlog() {
@@ -113,21 +114,45 @@ export default function TwoPointerBlog() {
             </p>
           </div>
 
-          <div className="rounded-[1.75rem] border border-[var(--border)] bg-[linear-gradient(135deg,#0f1720_0%,#123a3d_52%,#115e59_100%)] p-6 text-white shadow-[0_28px_90px_rgba(10,20,30,0.18)]">
+          <div className="overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[linear-gradient(135deg,#0f1720_0%,#123a3d_52%,#115e59_100%)] p-6 text-white shadow-[0_28px_90px_rgba(10,20,30,0.18)]">
             <p className="text-xs uppercase tracking-[0.18em] text-teal-100/70">
-              Mental picture
+              Hallway picture
             </p>
-            <pre className="mt-4 overflow-x-auto text-sm leading-7 text-slate-100">
-{`h  e  l  l  o
-^           ^
-left        right
-
-swap the ends
-
-o  e  l  l  h
-   ^     ^
- left   right`}
-            </pre>
+            <div className="mt-5 rounded-[1.25rem] border border-white/10 bg-white/8 p-4">
+              <div className="flex items-center justify-between gap-2">
+                {hallwaySteps.map((step) => (
+                  <div
+                    key={`${step.label}-${step.value}`}
+                    className="flex min-w-0 flex-1 flex-col items-center gap-2"
+                  >
+                    <div
+                      className={`flex h-12 w-12 items-center justify-center rounded-2xl border text-lg font-semibold ${
+                        step.side === "left"
+                          ? "animate-pointer-left border-emerald-200 bg-emerald-100 text-emerald-950"
+                          : step.side === "right"
+                            ? "animate-pointer-right border-sky-200 bg-sky-100 text-sky-950"
+                            : "border-white/10 bg-white/10 text-white"
+                      }`}
+                    >
+                      {step.value}
+                    </div>
+                    <p className="text-center text-[11px] uppercase tracking-[0.14em] text-slate-300">
+                      {step.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-5 grid gap-3 text-sm leading-6 text-slate-200 sm:grid-cols-2">
+                <p>
+                  <strong className="text-emerald-100">left</strong> is you,
+                  standing at the first unresolved character.
+                </p>
+                <p>
+                  <strong className="text-sky-100">right</strong> is your
+                  friend, standing at the last unresolved character.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -140,25 +165,66 @@ o  e  l  l  h
             is important because it teaches pointer trust.
           </p>
 
-          <div className="mt-6 overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-white/75 shadow-[0_18px_50px_rgba(15,23,32,0.04)]">
-            <div className="border-b border-[var(--border)] bg-[var(--surface-strong)] px-5 py-4">
-              <p className="text-sm font-medium text-[var(--foreground)]">
-                Interview-ready Python
-              </p>
+          <div className="mt-6 overflow-hidden rounded-[1.75rem] border border-slate-800 bg-[#0b1220] shadow-[0_24px_70px_rgba(15,23,32,0.18)]">
+            <div className="flex items-center justify-between border-b border-white/10 bg-[#111827] px-5 py-4">
+              <div>
+                <p className="text-sm font-medium text-white">
+                  reverse_string.py
+                </p>
+                <p className="mt-1 text-xs text-slate-400">
+                  The hallway idea translated into Python.
+                </p>
+              </div>
+              <div className="hidden gap-2 sm:flex">
+                <span className="h-3 w-3 rounded-full bg-red-400" />
+                <span className="h-3 w-3 rounded-full bg-amber-400" />
+                <span className="h-3 w-3 rounded-full bg-emerald-400" />
+              </div>
             </div>
-            <pre className="overflow-x-auto p-5 text-sm leading-7 text-[var(--foreground)]">
-{`from typing import List
+            <pre className="overflow-x-auto p-5 font-mono text-sm leading-7 text-slate-100">
+<code>{`from typing import List
 
 
 class Solution:
     def reverseString(self, s: List[str]) -> None:
+        # You start at the left end of the hallway.
         left, right = 0, len(s) - 1
 
         while left < right:
+            # You and your friend swap the objects you are standing on.
             s[left], s[right] = s[right], s[left]
+
+            # Both of you move closer. The outside is now solved.
             left += 1
-            right -= 1`}
+            right -= 1`}</code>
             </pre>
+          </div>
+
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            <div className="rounded-[1.25rem] border border-[var(--border)] bg-white/75 p-4">
+              <p className="text-sm font-semibold text-[var(--foreground)]">
+                `left`
+              </p>
+              <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                You start from the beginning and move forward.
+              </p>
+            </div>
+            <div className="rounded-[1.25rem] border border-[var(--border)] bg-white/75 p-4">
+              <p className="text-sm font-semibold text-[var(--foreground)]">
+                `right`
+              </p>
+              <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                Your friend starts from the end and moves backward.
+              </p>
+            </div>
+            <div className="rounded-[1.25rem] border border-[var(--border)] bg-white/75 p-4">
+              <p className="text-sm font-semibold text-[var(--foreground)]">
+                `while left &lt; right`
+              </p>
+              <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                Keep walking until the unsolved hallway disappears.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -173,33 +239,6 @@ class Solution:
                 className="rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-4 text-sm leading-6 text-[var(--muted)]"
               >
                 {takeaway}
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="mt-10 rounded-[1.75rem] border border-[var(--border)] bg-[linear-gradient(180deg,rgba(251,252,250,0.96),rgba(232,243,241,0.78))] p-6 shadow-[0_18px_50px_rgba(15,23,32,0.04)]">
-          <p className="text-xs uppercase tracking-[0.18em] text-[var(--muted)]">
-            Easy-to-hard ladder
-          </p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-[var(--foreground)]">
-            One idea, upgraded one constraint at a time.
-          </h2>
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            {ladder.map((step, index) => (
-              <div
-                key={step.title}
-                className="rounded-[1.25rem] border border-[var(--border)] bg-white/80 p-4 shadow-[0_12px_30px_rgba(15,23,32,0.04)]"
-              >
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--accent)]">
-                  Rung {index + 1}
-                </p>
-                <h3 className="mt-2 text-lg font-semibold text-[var(--foreground)]">
-                  {step.title}
-                </h3>
-                <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-                  {step.lesson}
-                </p>
               </div>
             ))}
           </div>

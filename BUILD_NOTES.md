@@ -855,6 +855,61 @@ git commit -m "Upgrade two pointer article"
 git push origin main
 ```
 
+## Two Pointer Article Visual And Code Refinement
+
+### What changed
+
+The Two Pointer article page was refined based on article-quality feedback.
+
+Files changed:
+
+- [app/blog/two-pointer-technique/page.tsx](/Users/vishalcherupally/Documents/github/vishal-portfolio/app/blog/two-pointer-technique/page.tsx)
+- [app/globals.css](/Users/vishalcherupally/Documents/github/vishal-portfolio/app/globals.css)
+
+### Why we changed it
+
+The page had three issues:
+
+- the easy-to-hard ladder section felt too much for the current article page,
+- the code block looked like plain text instead of a proper Python snippet,
+- and the hallway analogy needed a stronger visual connection to the actual code.
+
+### Fixes made
+
+- Removed the easy-to-hard ladder section from the page
+- Added a visual hallway model where `left` is "you" and `right` is "your friend"
+- Added subtle pointer movement animation
+- Restyled the code block to look like a real editor/code snippet
+- Added comments inside the Python code that connect the code back to the analogy
+- Added small explanation cards for `left`, `right`, and `while left < right`
+
+### Why this improves UX
+
+- The article becomes more visual and less text-heavy
+- The analogy is no longer separate from the code
+- Readers can map story to implementation directly
+- The page feels closer to a polished teaching resource
+
+### Concepts involved
+
+- Visual teaching
+- Code annotation
+- Analogy-to-implementation mapping
+- Reducing page clutter
+- Motion as explanation
+
+### Commands to run next
+
+After reviewing locally, commit and push with:
+
+```bash
+cd /Users/vishalcherupally/Documents/github/vishal-portfolio
+git status --short
+git add app/blog/two-pointer-technique/page.tsx app/globals.css BUILD_NOTES.md
+git commit -m "Refine two pointer article visuals"
+git push origin main
+```
+
 ## How to Keep Using This File
 
 For every future step, add:
