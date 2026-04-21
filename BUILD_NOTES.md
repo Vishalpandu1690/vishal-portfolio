@@ -958,6 +958,68 @@ git commit -m "Improve two pointer code and illustration"
 git push origin main
 ```
 
+## Interactive Reverse String Playground
+
+### What changed
+
+The static Reverse String code block was replaced with an interactive playground.
+
+Files changed:
+
+- [components/reverse-string-playground.tsx](/Users/vishalcherupally/Documents/github/vishal-portfolio/components/reverse-string-playground.tsx)
+- [app/blog/two-pointer-technique/page.tsx](/Users/vishalcherupally/Documents/github/vishal-portfolio/app/blog/two-pointer-technique/page.tsx)
+
+### Why we changed it
+
+The article needed to go beyond a static code display.
+
+The goal is for readers to:
+
+- change the input,
+- see the output immediately,
+- watch how `left` and `right` move,
+- and connect the hallway analogy to the actual algorithm.
+
+### Implementation decision
+
+We built a small client-side playground instead of executing Python directly.
+
+The visible code remains Python-style, but the browser simulation uses the same algorithm logic to show:
+
+- final output,
+- each swap step,
+- the `left` pointer position,
+- and the `right` pointer position.
+
+### Why this improves UX
+
+- Readers learn by trying, not just reading
+- The analogy becomes interactive
+- The page starts feeling like an educational product, not only a blog
+- This pattern can later be reused for other coding problems
+
+### Future improvement
+
+For a larger coding platform, we can eventually add:
+
+- a real browser code editor,
+- syntax highlighting library,
+- multiple test cases,
+- run/reset controls,
+- and language tabs.
+
+### Commands to run next
+
+After reviewing locally, commit and push with:
+
+```bash
+cd /Users/vishalcherupally/Documents/github/vishal-portfolio
+git status --short
+git add components/reverse-string-playground.tsx app/blog/two-pointer-technique/page.tsx BUILD_NOTES.md
+git commit -m "Add interactive reverse string playground"
+git push origin main
+```
+
 ## How to Keep Using This File
 
 For every future step, add:
