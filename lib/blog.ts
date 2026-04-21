@@ -68,12 +68,12 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "two-pointer-technique",
-    title: "Mastering Two Pointer Technique in Python",
+    title: "Two Pointers: The Art of Shrinking a Problem from Both Ends",
     excerpt:
-      "Learn how two pointers reduce brute-force work and turn sorted-array problems into clean O(n) solutions.",
+      "A narrative introduction to Two Pointers using hallway analogies, invariants, and an easy-to-hard interview ladder.",
     category: "python-coding",
     publishedAt: "Apr 2026",
-    readingTime: "5 min read",
+    readingTime: "8 min read",
   },
   {
     slug: "sliding-window-technique",

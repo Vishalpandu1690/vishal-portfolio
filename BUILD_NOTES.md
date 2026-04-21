@@ -779,6 +779,82 @@ git commit -m "Redesign S3 mind map to fit article layout"
 git push origin main
 ```
 
+## Python Coding Teaching Direction
+
+### What changed
+
+The first Two Pointer draft in [Two Pointer/Article_1](/Users/vishalcherupally/Documents/github/vishal-portfolio/Two%20Pointer/Article_1) was rewritten and the live blog page was upgraded.
+
+Files changed:
+
+- [Two Pointer/Article_1](/Users/vishalcherupally/Documents/github/vishal-portfolio/Two%20Pointer/Article_1)
+- [app/blog/two-pointer-technique/page.tsx](/Users/vishalcherupally/Documents/github/vishal-portfolio/app/blog/two-pointer-technique/page.tsx)
+- [lib/blog.ts](/Users/vishalcherupally/Documents/github/vishal-portfolio/lib/blog.ts)
+
+### Why we changed it
+
+The goal for Python Coding is not to publish ordinary problem explanations.
+
+The content should:
+
+- teach the essence of the technique,
+- use narrative and analogy,
+- connect problems through small mutations,
+- build an easy-to-hard ladder,
+- help readers recognize patterns in interviews,
+- and feel interesting enough that people actually want to keep reading.
+
+### Editorial decision
+
+The article now avoids comparison with other websites and focuses only on the learning experience we want to create.
+
+The core teaching promise is:
+
+- do not memorize random problems,
+- understand the invariant,
+- see how one problem mutates into the next,
+- and build interview intuition step by step.
+
+### What was added to the live article
+
+- stronger article hero
+- hallway analogy
+- invariant explanation
+- visual rope/string mental model
+- interview-ready Python code
+- takeaway cards
+- easy-to-hard ladder
+- mutation into Valid Palindrome
+- interview talk-track
+
+### Why this improves UX
+
+- The reader gets a story before code
+- The article teaches why the technique works, not just how to code it
+- The ladder creates curiosity for the next article
+- The narrative makes the concept more memorable
+
+### Concepts involved
+
+- Technical storytelling
+- Pattern recognition
+- Invariants
+- Progressive problem ladders
+- Interview communication
+- Curriculum design
+
+### Commands to run next
+
+After reviewing locally, commit and push with:
+
+```bash
+cd /Users/vishalcherupally/Documents/github/vishal-portfolio
+git status --short
+git add 'Two Pointer/Article_1' app/blog/two-pointer-technique/page.tsx lib/blog.ts BUILD_NOTES.md
+git commit -m "Upgrade two pointer article"
+git push origin main
+```
+
 ## How to Keep Using This File
 
 For every future step, add:

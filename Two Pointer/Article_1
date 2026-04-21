@@ -1,0 +1,305 @@
+# Two Pointers: The Art of Shrinking a Problem from Both Ends
+
+> Not all problems need more power. Some need better positioning.
+
+## A short story before we touch code
+
+Imagine you are standing at one end of a long hallway.
+
+At the other end, your friend is standing and facing you.
+
+The hallway is full of objects. Some matter. Some are distractions. Your job is to figure something out about the hallway as fast as possible.
+
+Here is the rule:
+
+- You can only move forward.
+- Your friend can only move backward.
+- Once both of you pass an object, that part of the hallway is finished.
+
+Would you walk the whole hallway alone?
+
+Or would you coordinate from both ends and shrink the unknown space together?
+
+That instinct is the soul of Two Pointers.
+
+It is not about being clever with indices.
+It is about reducing the problem space without losing truth.
+
+## Why Two Pointers exists
+
+Two Pointers exists because many problems have structure.
+
+And when structure exists, we do not need to check everything blindly.
+
+Instead of saying:
+
+> "Let me try all possibilities."
+
+We ask:
+
+> "Can I safely eliminate part of the problem?"
+
+That one question is the entire technique.
+
+Two Pointers is controlled reduction.
+
+## The essence
+
+Lock this in:
+
+> Two Pointers is about shrinking a problem space while preserving correctness.
+
+Not arrays.
+Not strings.
+Not syntax.
+Not `left += 1` and `right -= 1`.
+
+Those are just tools.
+
+The real idea is:
+
+> Can I move inward and still trust that what I left behind is correct?
+
+If yes, you probably have a Two Pointer problem.
+
+## The invariant: the secret engine
+
+An invariant is something that remains true while the algorithm runs.
+
+In many Two Pointer problems, the invariant is:
+
+> Everything outside the pointers is already processed correctly.
+
+That is a powerful sentence.
+
+When you move a pointer, you are making a promise:
+
+> "I am done with that part. I do not need to revisit it."
+
+This is why Two Pointers feels clean when understood properly.
+You are not wandering.
+You are closing the case from the outside in.
+
+## Problem 1: Reverse String
+
+Let us start with the purest version of the technique.
+
+Reverse a string in-place.
+
+This problem is not important because reversing a string is hard.
+It is important because it teaches pointer trust.
+
+## The mental picture
+
+Think of the string as a rope:
+
+```text
+h  e  l  l  o
+^           ^
+left        right
+```
+
+You are not simply looping.
+
+You are:
+
+- grabbing both ends,
+- putting them where they belong,
+- and shrinking the rope.
+
+After one swap:
+
+```text
+o  e  l  l  h
+   ^     ^
+ left   right
+```
+
+The outer characters are finished.
+
+Do not touch them again.
+Do not doubt them again.
+They have graduated.
+
+## The invariant for Reverse String
+
+For this problem:
+
+> Characters outside `left` and `right` are already in their final positions.
+
+That means every swap expands the solved region and shrinks the unknown region.
+
+## Code
+
+```python
+from typing import List
+
+
+class Solution:
+    def reverseString(self, s: List[str]) -> None:
+        left, right = 0, len(s) - 1
+
+        while left < right:
+            s[left], s[right] = s[right], s[left]
+            left += 1
+            right -= 1
+```
+
+## Slow dry run
+
+Input:
+
+```python
+["h", "e", "l", "l", "o"]
+```
+
+Step 1:
+
+```text
+h e l l o
+^       ^
+
+swap h and o
+
+o e l l h
+  ^   ^
+```
+
+Now `o` and `h` are correct forever.
+
+Step 2:
+
+```text
+o e l l h
+  ^   ^
+
+swap e and l
+
+o l l e h
+    ^
+```
+
+Now the unknown space has collapsed.
+
+Stop when `left >= right`.
+
+The middle character does not need drama. It is already home.
+
+## Why not use slicing?
+
+In Python, you could reverse with slicing.
+
+```python
+s[::-1]
+```
+
+But that hides the lesson.
+
+Interviews often care about:
+
+- in-place reasoning,
+- memory constraints,
+- pointer movement,
+- and whether you can explain why your algorithm is correct.
+
+Slicing gives you a result.
+
+Two Pointers gives you a mental model.
+
+And mental models are what help you solve the next problem.
+
+## What we really learned
+
+We did not just learn how to reverse a string.
+
+We learned:
+
+- how to place sentinels at the boundaries,
+- how to shrink the unknown region,
+- how to trust completed work,
+- how a stopping condition comes from an invariant,
+- and how correctness grows from the outside inward.
+
+That is the foundation.
+
+## The mutation that creates the next problem
+
+Now change one rule:
+
+> Reverse-style comparison, but ignore punctuation, spaces, and casing.
+
+Suddenly you cannot move both pointers blindly.
+
+Sometimes the left pointer sees garbage and must skip.
+Sometimes the right pointer sees garbage and must skip.
+Sometimes both characters are valid and must be compared.
+
+You just landed on:
+
+> Valid Palindrome
+
+Same core idea.
+New constraint.
+New pointer movement.
+
+That is how the ladder works.
+
+## The easy-to-hard ladder
+
+Each problem should mutate exactly one idea from the previous one.
+
+```text
+Reverse String
+  -> move both pointers every time
+
+Valid Palindrome
+  -> sometimes skip one pointer
+
+Is Subsequence
+  -> both pointers move in one direction
+
+Two Sum II
+  -> sorted order tells us which pointer to move
+
+Container With Most Water
+  -> greedy choice enters the picture
+
+Trapping Rain Water
+  -> pointer movement depends on boundary confidence
+```
+
+This is how a technique becomes learnable.
+
+You do not memorize six random problems.
+You watch one idea evolve.
+
+## Interview talk-track
+
+If an interviewer asks why you are using Two Pointers, say something like:
+
+> "We can place pointers at the boundaries and shrink the search space while preserving correctness. After each step, the region outside the pointers is already resolved, so we never need to revisit it. That gives us a linear-time solution."
+
+That answer signals that you understand the technique, not just the code.
+
+## Pause here
+
+Do not rush.
+
+Two Pointers is not just a trick.
+
+It is a way of negotiating with a problem:
+
+> "What can I safely ignore now?"
+
+Once that question becomes natural, the pattern starts showing up everywhere.
+
+## Next article
+
+Article 2: Valid Palindrome — When You Are Allowed To Ignore Things
+
+We will learn:
+
+- selective pointer movement,
+- when to move one pointer versus both,
+- why branching can become dangerous,
+- and how ignoring characters changes the invariant.
