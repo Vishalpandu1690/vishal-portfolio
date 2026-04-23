@@ -67,15 +67,6 @@ export const blogPosts: BlogPost[] = [
     featured: true,
   },
   {
-    slug: "two-pointer-technique",
-    title: "Two Pointers: The Art of Shrinking a Problem from Both Ends",
-    excerpt:
-      "A narrative introduction to Two Pointers using hallway analogies, invariants, and an easy-to-hard interview ladder.",
-    category: "python-coding",
-    publishedAt: "Apr 2026",
-    readingTime: "8 min read",
-  },
-  {
     slug: "sliding-window-technique",
     title: "Mastering Sliding Window Technique in Python",
     excerpt:

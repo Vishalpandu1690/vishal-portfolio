@@ -1022,6 +1022,86 @@ git push origin main
 
 ## How to Keep Using This File
 
+## Study Materials Restructure
+
+### What changed
+
+The Two Pointer content was moved out of Blog and into Study Materials.
+
+Files changed:
+
+- [lib/study.ts](/Users/vishalcherupally/Documents/github/vishal-portfolio/lib/study.ts)
+- [app/study/page.tsx](/Users/vishalcherupally/Documents/github/vishal-portfolio/app/study/page.tsx)
+- [app/study/python/page.tsx](/Users/vishalcherupally/Documents/github/vishal-portfolio/app/study/python/page.tsx)
+- [app/study/python/dsa-patterns/two-pointers/page.tsx](/Users/vishalcherupally/Documents/github/vishal-portfolio/app/study/python/dsa-patterns/two-pointers/page.tsx)
+- [lib/blog.ts](/Users/vishalcherupally/Documents/github/vishal-portfolio/lib/blog.ts)
+
+The old blog route for Two Pointers was removed:
+
+- `app/blog/two-pointer-technique/page.tsx`
+
+### Why we changed it
+
+The Two Pointer lesson did not feel like a blog post anymore.
+
+It is better as structured study material because the goal is to teach a concept deeply:
+
+- define the problem,
+- explain with an example,
+- build the intuition,
+- connect the analogy to code,
+- and show how the problem leads to the next pattern.
+
+### Study structure decision
+
+Study Materials now has top-level tracks:
+
+- Python
+- SQL
+- System Design
+- Cloud
+- AI
+
+Inside Python, the recommended section names are:
+
+- Python Foundations
+- DSA Patterns in Python
+
+This naming works better than "Python Basics and DSA" because it separates language learning from problem-solving patterns while still keeping both under Python.
+
+### Two Pointer lesson direction
+
+The new Two Pointer lesson now starts with a clearer problem-first flow:
+
+1. Problem definition
+2. Example input and expected output
+3. Hallway analogy
+4. Why this is a Two Pointer problem
+5. Invariant
+6. Interactive playground
+7. Takeaways
+8. How this mutates into Valid Palindrome
+
+### Why this improves UX
+
+- The reader knows the exact problem before seeing the technique
+- The article feels more like a lesson than a loose blog post
+- Python study material now has a scalable home
+- Future DSA lessons can follow the same template
+
+### Commands to run next
+
+After reviewing locally, commit and push with:
+
+```bash
+cd /Users/vishalcherupally/Documents/github/vishal-portfolio
+git status --short
+git add lib/study.ts app/study/page.tsx app/study/python/page.tsx app/study/python/dsa-patterns/two-pointers/page.tsx lib/blog.ts BUILD_NOTES.md
+git add -u app/blog/two-pointer-technique/page.tsx
+git commit -m "Move two pointers into study materials"
+git push origin main
+```
+
 For every future step, add:
 
 1. What we changed
