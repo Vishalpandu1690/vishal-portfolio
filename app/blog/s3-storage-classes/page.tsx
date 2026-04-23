@@ -80,7 +80,7 @@ export default function S3StorageClassesBlog() {
           Cloud
         </Link>
 
-        <header className="mt-6 rounded-[2rem] border border-[var(--border)] bg-[linear-gradient(180deg,rgba(251,252,250,0.95),rgba(232,243,241,0.92))] p-8 shadow-[0_20px_60px_rgba(15,23,32,0.06)]">
+        <header className="mt-6 rounded-[2rem] border border-[var(--border)] bg-[var(--surface)] p-8 ">
           <p className="text-xs uppercase tracking-[0.18em] text-[var(--muted)]">
             Apr 2026 • 12 min read
           </p>
@@ -115,7 +115,7 @@ export default function S3StorageClassesBlog() {
           </p>
         </section>
 
-        <section className="mt-10 rounded-[1.75rem] border border-[var(--border)] bg-white/70 p-6 shadow-[0_18px_50px_rgba(15,23,32,0.04)]">
+        <section className="mt-10 rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface)] p-6 ">
           <h2 className="text-2xl font-semibold text-[var(--foreground)]">
             First, the big idea: data has temperature
           </h2>
@@ -171,7 +171,7 @@ export default function S3StorageClassesBlog() {
           </p>
         </section>
 
-        <section className="mt-10 overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-white/75 shadow-[0_18px_50px_rgba(15,23,32,0.04)]">
+        <section className="mt-10 overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface)] ">
           <div className="border-b border-[var(--border)] px-6 py-5">
             <h2 className="text-2xl font-semibold text-[var(--foreground)]">
               The quick mental model
@@ -212,7 +212,7 @@ export default function S3StorageClassesBlog() {
           </div>
         </section>
 
-        <section className="mt-10 rounded-[1.75rem] border border-[var(--border)] bg-[linear-gradient(180deg,rgba(251,252,250,0.96),rgba(232,243,241,0.78))] p-6 shadow-[0_18px_50px_rgba(15,23,32,0.04)] sm:p-8">
+        <section className="mt-10 rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface)] p-6  sm:p-8">
           <div className="max-w-2xl">
             <p className="text-xs uppercase tracking-[0.18em] text-[var(--muted)]">
               Mind map view
@@ -303,15 +303,15 @@ export default function S3StorageClassesBlog() {
           />
         </section>
 
-        <section className="mt-10 rounded-[1.75rem] border border-[var(--border)] bg-[linear-gradient(135deg,#0f1720_0%,#123a3d_52%,#115e59_100%)] p-8 text-white shadow-[0_28px_90px_rgba(10,20,30,0.18)]">
-          <p className="text-xs uppercase tracking-[0.18em] text-teal-100/70">
+        <section className="mt-10 rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface-raised)] p-8 text-white ">
+          <p className="text-xs uppercase tracking-[0.18em] text-[var(--accent)]">
             Quiet hero
           </p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight">
             Lifecycle policies are where S3 stops being storage and becomes
             architecture.
           </h2>
-          <p className="mt-5 max-w-3xl leading-8 text-slate-200">
+          <p className="mt-5 max-w-3xl leading-8 text-[var(--muted-mid)]">
             You do not want to manually move millions of objects between
             classes. Lifecycle policies let you tell S3 a story: be fast for 30
             days, get cheaper after that, then go quiet, then sleep. That is
@@ -321,7 +321,7 @@ export default function S3StorageClassesBlog() {
         </section>
 
         <section className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1.1fr)_minmax(280px,0.9fr)]">
-          <div className="rounded-[1.75rem] border border-[var(--border)] bg-white/75 p-6 shadow-[0_18px_50px_rgba(15,23,32,0.04)]">
+          <div className="rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface)] p-6 ">
             <h2 className="text-2xl font-semibold text-[var(--foreground)]">
               How to choose the right class
             </h2>
@@ -337,7 +337,7 @@ export default function S3StorageClassesBlog() {
             </ol>
           </div>
 
-          <div className="rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface)] p-6 shadow-[0_18px_50px_rgba(15,23,32,0.04)]">
+          <div className="rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface)] p-6 ">
             <h2 className="text-2xl font-semibold text-[var(--foreground)]">
               Common mistakes
             </h2>
@@ -349,7 +349,7 @@ export default function S3StorageClassesBlog() {
           </div>
         </section>
 
-        <section className="mt-10 rounded-[1.75rem] border border-[var(--border)] bg-white/75 p-8 shadow-[0_18px_50px_rgba(15,23,32,0.04)]">
+        <section className="mt-10 rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface)] p-8 ">
           <h2 className="text-2xl font-semibold text-[var(--foreground)]">
             Final thought
           </h2>
@@ -377,7 +377,7 @@ type StorageSectionProps = {
 
 function StorageSection({ title, body, bullets }: StorageSectionProps) {
   return (
-    <section className="rounded-[1.75rem] border border-[var(--border)] bg-white/75 p-6 shadow-[0_18px_50px_rgba(15,23,32,0.04)]">
+    <section className="rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface)] p-6 ">
       <h2 className="text-2xl font-semibold text-[var(--foreground)]">
         {title}
       </h2>

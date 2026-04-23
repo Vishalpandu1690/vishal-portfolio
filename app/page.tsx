@@ -1,22 +1,26 @@
+"use client";
 import Link from "next/link";
 
 const primarySections = [
   {
+    tag: "01",
     title: "Blog Library",
     description:
       "Articles that explain core computer science, cloud, data, AI/ML, system design, and Python in a practical way.",
     href: "/blog",
   },
   {
+    tag: "02",
     title: "Study Materials",
     description:
-      "Structured notes, revision guides, and concept breakdowns for interview prep and deeper understanding.",
+      "Structured learning paths, pattern-driven lessons, and editorial-depth guides for interview prep and long-term depth.",
     href: "/study",
   },
   {
+    tag: "03",
     title: "Projects",
     description:
-      "Proof of execution through hands-on work, case studies, and things I have built while learning in public.",
+      "Proof of execution through hands-on work, case studies, and things built while learning in public.",
     href: "/projects",
   },
 ];
@@ -42,143 +46,381 @@ const audienceCards = [
 const startHereLinks = [
   {
     label: "Start with foundations",
-    title: "General CS, Python, and core problem-solving",
+    title: "CS, Python, and core problem-solving",
     summary:
-      "Use the blog and study sections to build strong intuition before going deeper into systems and data.",
+      "Build strong intuition before going deeper into systems and data.",
     href: "/study",
   },
   {
     label: "Go deeper",
-    title: "System design, cloud, and architecture thinking",
+    title: "System design, cloud, and architecture",
     summary:
-      "Learn how software scales, why tradeoffs matter, and how strong systems are reasoned about.",
+      "Learn how software scales, why tradeoffs matter, and how strong systems are built.",
     href: "/blog",
   },
   {
     label: "See execution",
-    title: "Projects and applied engineering work",
+    title: "Projects and applied engineering",
     summary:
-      "Read case studies and real builds to connect theory with implementation and engineering judgment.",
+      "Connect theory with implementation through real case studies.",
     href: "/projects",
   },
 ];
 
 export default function Home() {
   return (
-    <main className="min-h-screen px-6 py-16 text-[var(--foreground)] sm:px-10">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-16">
-        <section className="grid gap-10 lg:grid-cols-[minmax(0,1.5fr)_minmax(280px,0.9fr)] lg:items-end">
-          <div className="max-w-3xl animate-fade-up">
-            <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-[var(--muted)]">
+    <main
+      style={{
+        minHeight: "100vh",
+        color: "var(--foreground)",
+        position: "relative",
+        overflowX: "hidden",
+      }}
+    >
+      {/* Subtle amber glow top-left */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: 560,
+          height: 560,
+          borderRadius: "50%",
+          background:
+            "radial-gradient(circle, rgba(232,160,32,0.07) 0%, transparent 70%)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+
+      <div
+        style={{
+          position: "relative",
+          zIndex: 1,
+          maxWidth: 1200,
+          margin: "0 auto",
+          padding: "80px 5vw 120px",
+          display: "flex",
+          flexDirection: "column",
+          gap: 80,
+        }}
+      >
+        {/* ── HERO ── */}
+        <section
+          style={{
+            display: "grid",
+            gap: 48,
+            gridTemplateColumns: "minmax(0,1.4fr) minmax(260px,0.8fr)",
+            alignItems: "end",
+          }}
+          className="animate-fade-up"
+        >
+          <div>
+            <p
+              className="mono-label"
+              style={{
+                fontSize: 10,
+                letterSpacing: "0.28em",
+                color: "var(--accent)",
+                textTransform: "uppercase",
+                marginBottom: 24,
+              }}
+            >
               Vishal Cherupally
             </p>
 
-            <h1 className="max-w-4xl text-4xl font-semibold tracking-tight text-[var(--foreground)] sm:text-5xl lg:text-6xl">
-              The science behind computers, software, data, and Python.
+            <h1
+              className="h-display"
+              style={{ fontSize: "clamp(44px,6vw,86px)", maxWidth: 700 }}
+            >
+              The Science Behind Computers, Software,{" "}
+              <span style={{ color: "var(--accent)" }}>Data & Python.</span>
             </h1>
 
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">
-              This is a learning-first technical publication for people curious
-              about software, system design, cloud, data, AI/ML, and coding for
-              strong engineering roles. The goal is simple: make serious topics
-              useful, practical, and worth returning to.
+            <p
+              className="prose-body"
+              style={{
+                marginTop: 28,
+                maxWidth: 520,
+                fontSize: "1.1rem",
+              }}
+            >
+              A learning-first technical publication for people curious about
+              software, system design, cloud, data, AI/ML, and coding for
+              strong engineering roles.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link
-                href="/blog"
-                className="rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-medium text-white transition duration-300 hover:-translate-y-0.5 hover:bg-[var(--accent-strong)] hover:shadow-[0_16px_40px_rgba(17,94,89,0.22)]"
-              >
+            <div style={{ marginTop: 36, display: "flex", gap: 16, flexWrap: "wrap" }}>
+              <Link href="/blog" className="btn-amber">
                 Read the blog
               </Link>
-
               <Link
                 href="/study"
-                className="rounded-full border border-[var(--border)] bg-white/70 px-5 py-3 text-sm font-medium text-[var(--foreground)] backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:border-[var(--accent)] hover:bg-[var(--surface)]"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  fontFamily: "var(--font-ibm-mono), monospace",
+                  fontSize: 11,
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  padding: "12px 28px",
+                  border: "1px solid var(--border)",
+                  color: "var(--muted-mid)",
+                  textDecoration: "none",
+                  transition: "border-color 0.18s, color 0.18s",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.borderColor =
+                    "var(--accent)";
+                  (e.currentTarget as HTMLAnchorElement).style.color =
+                    "var(--foreground)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLAnchorElement).style.borderColor =
+                    "var(--border)";
+                  (e.currentTarget as HTMLAnchorElement).style.color =
+                    "var(--muted-mid)";
+                }}
               >
                 Open study materials
               </Link>
             </div>
           </div>
 
-          <aside className="animate-fade-up-delay rounded-[2rem] border border-[var(--border)] bg-[linear-gradient(180deg,rgba(251,252,250,0.94),rgba(232,243,241,0.94))] p-6 shadow-[0_20px_60px_rgba(15,23,32,0.06)] backdrop-blur-sm lg:animate-float">
-            <p className="text-sm font-medium text-[var(--muted)]">
-              What this site is becoming
+          {/* What this site is card */}
+          <aside
+            style={{
+              background: "var(--surface)",
+              border: "1px solid var(--border)",
+              borderLeft: "3px solid var(--accent)",
+              padding: "28px 28px",
+            }}
+            className="animate-fade-up-delay animate-float"
+          >
+            <p
+              className="mono-label"
+              style={{ fontSize: 9, letterSpacing: "0.3em", color: "var(--accent)", textTransform: "uppercase", marginBottom: 16 }}
+            >
+              This site is
             </p>
-            <ul className="mt-4 space-y-4 text-sm leading-6 text-[var(--foreground)]">
-              <li>A technical publication around computer science and software.</li>
-              <li>A useful resource for data, AI/ML, cloud, and system design.</li>
-              <li>A learning platform for interview prep and long-term depth.</li>
+            <ul
+              style={{
+                listStyle: "none",
+                margin: 0,
+                padding: 0,
+                display: "flex",
+                flexDirection: "column",
+                gap: 14,
+              }}
+            >
+              {[
+                "A technical publication around CS and software.",
+                "A useful resource for data, AI/ML, cloud, and systems.",
+                "A learning platform for interview prep and long-term depth.",
+              ].map((item) => (
+                <li
+                  key={item}
+                  style={{
+                    fontSize: "0.95rem",
+                    color: "var(--muted-mid)",
+                    fontFamily: "var(--font-crimson), Georgia, serif",
+                    lineHeight: 1.6,
+                    paddingLeft: 16,
+                    borderLeft: "1px solid var(--border-subtle)",
+                  }}
+                >
+                  {item}
+                </li>
+              ))}
             </ul>
           </aside>
         </section>
 
-        <section className="grid gap-6 md:grid-cols-3">
+        {/* ── PRIMARY SECTION CARDS ── */}
+        <section
+          style={{
+            display: "grid",
+            gap: 1,
+            gridTemplateColumns: "repeat(3, 1fr)",
+            background: "var(--border)",
+          }}
+          className="animate-fade-up-slow"
+        >
           {primarySections.map((section) => (
             <Link
               key={section.title}
               href={section.href}
-              className="group animate-fade-up-slow rounded-[2rem] border border-[var(--border)] bg-[rgba(251,252,250,0.82)] p-6 shadow-[0_18px_50px_rgba(15,23,32,0.05)] backdrop-blur-sm transition duration-300 hover:-translate-y-1.5 hover:border-[var(--accent)] hover:shadow-[0_24px_70px_rgba(15,118,110,0.12)]"
+              style={{
+                display: "block",
+                background: "var(--surface)",
+                padding: "32px 28px",
+                textDecoration: "none",
+                transition: "background 0.2s",
+                position: "relative",
+              }}
+              onMouseEnter={(e) =>
+                ((e.currentTarget as HTMLAnchorElement).style.background =
+                  "var(--surface-raised)")
+              }
+              onMouseLeave={(e) =>
+                ((e.currentTarget as HTMLAnchorElement).style.background =
+                  "var(--surface)")
+              }
             >
-              <p className="text-sm font-medium text-[var(--muted)]">
-                Explore
+              <p
+                className="mono-label"
+                style={{ fontSize: 10, color: "var(--accent)", letterSpacing: "0.3em", marginBottom: 16 }}
+              >
+                {section.tag}
               </p>
-              <h2 className="mt-3 text-2xl font-semibold text-[var(--foreground)]">
+              <h2
+                className="h-display"
+                style={{ fontSize: 28, color: "var(--foreground)", marginBottom: 12 }}
+              >
                 {section.title}
               </h2>
-              <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
+              <p
+                className="prose-body"
+                style={{ fontSize: "0.9rem", margin: 0 }}
+              >
                 {section.description}
               </p>
-              <p className="mt-6 text-sm font-medium text-[var(--accent)] transition duration-300 group-hover:translate-x-1">
-                Enter section
+              <p
+                className="mono-label"
+                style={{
+                  marginTop: 24,
+                  fontSize: 10,
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  color: "var(--accent)",
+                }}
+              >
+                Enter →
               </p>
             </Link>
           ))}
         </section>
 
-        <section className="grid gap-4 md:grid-cols-3">
-          {audienceCards.map((item) => (
-            <article
-              key={item.title}
-              className="animate-fade-up-slow rounded-[1.75rem] border border-[var(--border)] bg-white/65 p-5 shadow-[0_12px_30px_rgba(15,23,32,0.04)] backdrop-blur-sm"
-            >
-              <p className="text-sm font-semibold text-[var(--foreground)]">
-                {item.title}
-              </p>
-              <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
-                {item.summary}
-              </p>
-            </article>
-          ))}
+        {/* ── WHO THIS IS FOR ── */}
+        <section className="animate-fade-up-slow">
+          <p className="section-label" style={{ marginBottom: 28 }}>
+            Who this is for
+          </p>
+          <div
+            style={{
+              display: "grid",
+              gap: 1,
+              gridTemplateColumns: "repeat(3, 1fr)",
+              background: "var(--border-subtle)",
+            }}
+          >
+            {audienceCards.map((item) => (
+              <article
+                key={item.title}
+                style={{
+                  background: "var(--background)",
+                  padding: "28px 24px",
+                }}
+              >
+                <h3
+                  style={{
+                    fontFamily: "var(--font-ibm-mono), monospace",
+                    fontSize: 12,
+                    letterSpacing: "0.12em",
+                    color: "var(--foreground)",
+                    marginBottom: 12,
+                    lineHeight: 1.4,
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {item.title}
+                </h3>
+                <p
+                  className="prose-body"
+                  style={{ fontSize: "0.9rem", margin: 0 }}
+                >
+                  {item.summary}
+                </p>
+              </article>
+            ))}
+          </div>
         </section>
 
-        <section className="animate-fade-up-slow rounded-[2rem] border border-[rgba(10,68,65,0.22)] bg-[linear-gradient(135deg,#0f1720_0%,#123a3d_52%,#115e59_100%)] px-6 py-8 text-white shadow-[0_28px_90px_rgba(10,20,30,0.22)] sm:px-8 sm:py-10">
-          <div className="max-w-2xl">
-            <p className="text-sm font-medium uppercase tracking-[0.2em] text-teal-100/70">
-              Start here
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight">
-              If the site grows into a useful learning hub, these are the paths
-              people should take first.
-            </h2>
-            <p className="mt-4 text-sm leading-6 text-slate-200">
-              The homepage now aims to speak to learners, engineers, and
-              interview-focused readers without boxing the site into one niche.
-            </p>
-          </div>
+        {/* ── START HERE ── */}
+        <section
+          style={{
+            background: "var(--surface)",
+            border: "1px solid var(--border)",
+            padding: "48px 40px",
+          }}
+          className="animate-fade-up-slow"
+        >
+          <p className="section-label" style={{ marginBottom: 20 }}>
+            Start here
+          </p>
+          <h2
+            className="h-display"
+            style={{ fontSize: "clamp(28px,4vw,48px)", maxWidth: 640, marginBottom: 40 }}
+          >
+            Three paths into the content — pick the one that matches where you
+            are.
+          </h2>
 
-          <div className="mt-8 grid gap-4 lg:grid-cols-3">
+          <div
+            style={{
+              display: "grid",
+              gap: 1,
+              gridTemplateColumns: "repeat(3, 1fr)",
+              background: "var(--border)",
+            }}
+          >
             {startHereLinks.map((item) => (
               <Link
                 key={item.title}
                 href={item.href}
-                className="rounded-[1.75rem] border border-white/12 bg-white/8 p-5 backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:bg-white/14"
+                style={{
+                  display: "block",
+                  background: "var(--surface-raised)",
+                  padding: "24px 20px",
+                  textDecoration: "none",
+                  transition: "background 0.2s",
+                }}
+                onMouseEnter={(e) =>
+                  ((e.currentTarget as HTMLElement).style.background =
+                    "#202020")
+                }
+                onMouseLeave={(e) =>
+                  ((e.currentTarget as HTMLElement).style.background =
+                    "var(--surface-raised)")
+                }
               >
-                <p className="text-xs font-medium uppercase tracking-[0.18em] text-teal-100/70">
+                <p
+                  className="mono-label"
+                  style={{
+                    fontSize: 9,
+                    letterSpacing: "0.25em",
+                    color: "var(--accent)",
+                    textTransform: "uppercase",
+                    marginBottom: 12,
+                  }}
+                >
                   {item.label}
                 </p>
-                <h3 className="mt-3 text-xl font-semibold">{item.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-200">
+                <h3
+                  style={{
+                    fontFamily: "var(--font-bebas), sans-serif",
+                    fontSize: 22,
+                    color: "var(--foreground)",
+                    marginBottom: 10,
+                  }}
+                >
+                  {item.title}
+                </h3>
+                <p
+                  className="prose-body"
+                  style={{ fontSize: "0.88rem", margin: 0 }}
+                >
                   {item.summary}
                 </p>
               </Link>

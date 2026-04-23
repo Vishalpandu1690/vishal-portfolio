@@ -28,82 +28,132 @@ export default async function BlogCategoryPage({ params }: CategoryPageProps) {
   }
 
   const posts = getPostsByCategory(category.slug);
+  const otherCategories = blogCategories.filter((c) => c.slug !== category.slug);
 
   return (
-    <main className="px-6 py-16 sm:px-10">
-      <div className="mx-auto flex w-full max-w-5xl flex-col gap-10">
-        <section className="max-w-3xl">
+    <main style={{ minHeight: "100vh", color: "var(--foreground)" }}>
+      <div
+        style={{
+          maxWidth: 1100,
+          margin: "0 auto",
+          padding: "72px 5vw 120px",
+          display: "flex",
+          flexDirection: "column",
+          gap: 64,
+        }}
+      >
+        {/* ── HEADER ── */}
+        <section>
           <Link
             href="/blog"
-            className="text-sm font-medium text-[var(--accent)] transition hover:text-[var(--accent-strong)]"
+            className="mono-label hover:text-[var(--accent)] transition-colors"
+            style={{ fontSize: 10, letterSpacing: "0.2em", color: "var(--muted)", textTransform: "uppercase", textDecoration: "none" }}
           >
-            Back to all categories
+            ← All categories
           </Link>
 
-          <p className="mt-6 text-sm font-medium uppercase tracking-[0.2em] text-[var(--muted)]">
+          <p className="section-label" style={{ marginTop: 28, marginBottom: 16 }}>
             Category
           </p>
-          <h1 className="mt-4 text-4xl font-semibold tracking-tight text-[var(--foreground)] sm:text-5xl">
+          <h1
+            className="h-display"
+            style={{ fontSize: "clamp(36px,5vw,70px)", maxWidth: 640 }}
+          >
             {category.name}
           </h1>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-[var(--muted)] sm:text-lg sm:leading-8">
+          <p
+            className="prose-body"
+            style={{ marginTop: 16, maxWidth: 520, fontSize: "1rem" }}
+          >
             {category.description}
           </p>
         </section>
 
+        {/* ── POSTS ── */}
         {posts.length > 0 ? (
-          <section className="grid gap-4">
-            {posts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="rounded-[1.75rem] border border-[var(--border)] bg-[rgba(251,252,250,0.82)] p-6 shadow-[0_18px_50px_rgba(15,23,32,0.04)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-[var(--accent)]"
-              >
-                <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.16em] text-[var(--muted)]">
-                  <span>{post.publishedAt}</span>
-                  <span className="h-1 w-1 rounded-full bg-[var(--accent)]" />
-                  <span>{post.readingTime}</span>
-                </div>
-                <h2 className="mt-3 text-2xl font-semibold text-[var(--foreground)]">
-                  {post.title}
-                </h2>
-                <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
-                  {post.excerpt}
-                </p>
-              </Link>
-            ))}
+          <section>
+            <div style={{ display: "flex", flexDirection: "column", gap: 1, background: "var(--border-subtle)" }}>
+              {posts.map((post) => (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="hover:bg-[var(--surface-raised)] transition-colors"
+                  style={{
+                    display: "block",
+                    background: "var(--surface)",
+                    padding: "28px 24px",
+                    textDecoration: "none",
+                  }}
+                >
+                  <div
+                    className="mono-label"
+                    style={{ fontSize: 10, color: "var(--muted)", letterSpacing: "0.18em", textTransform: "uppercase", display: "flex", gap: 12, marginBottom: 12 }}
+                  >
+                    <span>{post.publishedAt}</span>
+                    <span style={{ color: "var(--accent)" }}>·</span>
+                    <span>{post.readingTime}</span>
+                  </div>
+                  <h2 className="h-display" style={{ fontSize: 26, marginBottom: 10 }}>
+                    {post.title}
+                  </h2>
+                  <p className="prose-body" style={{ fontSize: "0.9rem", margin: 0 }}>
+                    {post.excerpt}
+                  </p>
+                </Link>
+              ))}
+            </div>
           </section>
         ) : (
-          <section className="rounded-[2rem] border border-dashed border-[var(--border)] bg-white/65 p-8 text-center">
-            <p className="text-sm font-medium uppercase tracking-[0.18em] text-[var(--muted)]">
+          <section
+            style={{
+              background: "var(--surface)",
+              border: "1px dashed var(--border)",
+              padding: "48px 32px",
+              textAlign: "center",
+            }}
+          >
+            <p className="section-label" style={{ justifyContent: "center", marginBottom: 14 }}>
               Coming soon
             </p>
-            <h2 className="mt-3 text-2xl font-semibold text-[var(--foreground)]">
-              No posts published in {category.name} yet.
+            <h2 className="h-display" style={{ fontSize: 28, marginBottom: 12 }}>
+              No posts in {category.name} yet.
             </h2>
-            <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
-              This category is ready for future writing. For example, an article
-              on S3 storage classes would belong under Cloud.
+            <p className="prose-body" style={{ fontSize: "0.9rem", maxWidth: 440, margin: "0 auto" }}>
+              This category is ready. Writing is in progress and will be published here.
             </p>
           </section>
         )}
 
-        <section className="rounded-[2rem] border border-[var(--border)] bg-[linear-gradient(135deg,#0f1720_0%,#123a3d_52%,#115e59_100%)] px-6 py-8 text-white shadow-[0_28px_90px_rgba(10,20,30,0.18)] sm:px-8">
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-teal-100/70">
+        {/* ── BROWSE OTHER CATEGORIES ── */}
+        <section
+          style={{
+            background: "var(--surface)",
+            border: "1px solid var(--border)",
+            padding: "32px 28px",
+          }}
+        >
+          <p className="section-label" style={{ marginBottom: 20 }}>
             Browse next
           </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            {blogCategories
-              .filter((item) => item.slug !== category.slug)
-              .map((item) => (
-                <Link
-                  key={item.slug}
-                  href={`/blog/category/${item.slug}`}
-                  className="rounded-full border border-white/15 bg-white/8 px-4 py-2 text-sm font-medium text-white transition duration-300 hover:bg-white/14"
-                >
-                  {item.name}
-                </Link>
-              ))}
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+            {otherCategories.map((item) => (
+              <Link
+                key={item.slug}
+                href={`/blog/category/${item.slug}`}
+                className="mono-label hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
+                style={{
+                  fontSize: 10,
+                  letterSpacing: "0.15em",
+                  textTransform: "uppercase",
+                  color: "var(--muted-mid)",
+                  border: "1px solid var(--border)",
+                  padding: "8px 16px",
+                  textDecoration: "none",
+                }}
+              >
+                {item.name}
+              </Link>
+            ))}
           </div>
         </section>
       </div>

@@ -1,79 +1,134 @@
 import Link from "next/link";
 import { pythonStudyModules, studyTracks } from "@/lib/study";
 
-const pythonTrack = studyTracks.find((track) => track.slug === "python");
+const pythonTrack = studyTracks.find((t) => t.slug === "python");
 
 export default function PythonStudyPage() {
   return (
-    <main className="px-6 py-16 sm:px-10">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-12">
-        <section className="max-w-3xl">
+    <main style={{ minHeight: "100vh", color: "var(--foreground)" }}>
+      <div
+        style={{
+          maxWidth: 1100,
+          margin: "0 auto",
+          padding: "72px 5vw 120px",
+          display: "flex",
+          flexDirection: "column",
+          gap: 64,
+        }}
+      >
+        {/* ── HEADER ── */}
+        <section>
           <Link
             href="/study"
-            className="text-sm font-medium text-[var(--accent)] transition hover:text-[var(--accent-strong)]"
+            className="mono-label hover:text-[var(--accent)] transition-colors"
+            style={{ fontSize: 10, letterSpacing: "0.2em", color: "var(--muted)", textTransform: "uppercase", textDecoration: "none" }}
           >
-            Back to study materials
+            ← All tracks
           </Link>
 
-          <p className="mt-6 text-sm font-medium uppercase tracking-[0.2em] text-[var(--muted)]">
+          <p className="section-label" style={{ marginTop: 28, marginBottom: 16 }}>
             Python track
           </p>
-          <h1 className="mt-4 text-4xl font-semibold tracking-tight text-[var(--foreground)] sm:text-5xl">
-            Python Foundations and DSA Patterns
+
+          <h1
+            className="h-display"
+            style={{ fontSize: "clamp(36px,5vw,68px)", maxWidth: 640 }}
+          >
+            Python Foundations
+            <br />
+            <span style={{ color: "var(--accent)" }}>& DSA Patterns.</span>
           </h1>
-          <p className="mt-5 text-lg leading-8 text-[var(--muted)]">
+
+          <p className="prose-body" style={{ marginTop: 16, maxWidth: 500, fontSize: "1rem" }}>
             {pythonTrack?.description}
           </p>
         </section>
 
-        <section className="grid gap-5 md:grid-cols-2">
-          {pythonTrack?.sections.map((section) => (
-            <article
-              key={section.title}
-              className="rounded-[1.75rem] border border-[var(--border)] bg-white/75 p-6 shadow-[0_16px_40px_rgba(15,23,32,0.04)]"
+        {/* ── TRACK SECTIONS ── */}
+        {pythonTrack?.sections && (
+          <section>
+            <p className="section-label" style={{ marginBottom: 24 }}>
+              Track overview
+            </p>
+            <div
+              style={{
+                display: "grid",
+                gap: 1,
+                gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+                background: "var(--border-subtle)",
+              }}
             >
-              <h2 className="text-2xl font-semibold text-[var(--foreground)]">
-                {section.title}
-              </h2>
-              <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
-                {section.description}
-              </p>
-            </article>
-          ))}
-        </section>
+              {pythonTrack.sections.map((section) => (
+                <div
+                  key={section.title}
+                  style={{ background: "var(--surface)", padding: "24px" }}
+                >
+                  <h2
+                    className="h-display"
+                    style={{ fontSize: 22, marginBottom: 10 }}
+                  >
+                    {section.title}
+                  </h2>
+                  <p className="prose-body" style={{ fontSize: "0.88rem", margin: 0 }}>
+                    {section.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
-        <section className="rounded-[2rem] border border-[var(--border)] bg-[rgba(251,252,250,0.82)] p-6 shadow-[0_18px_50px_rgba(15,23,32,0.04)] sm:p-8">
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-[var(--muted)]">
-            DSA Patterns in Python
+        {/* ── DSA PATTERN MODULES ── */}
+        <section>
+          <p className="section-label" style={{ marginBottom: 24 }}>
+            DSA patterns in Python
           </p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-[var(--foreground)]">
+          <p
+            className="h-display"
+            style={{ fontSize: "clamp(20px,3vw,32px)", maxWidth: 580, marginBottom: 36, color: "var(--foreground)" }}
+          >
             Start with patterns that teach reusable thinking.
-          </h2>
+          </p>
 
-          <div className="mt-8 grid gap-4">
+          <div style={{ display: "flex", flexDirection: "column", gap: 1, background: "var(--border-subtle)" }}>
             {pythonStudyModules.map((module) => (
               <Link
                 key={module.slug}
                 href={module.href}
-                className="group rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface)] p-5 transition duration-300 hover:-translate-y-0.5 hover:border-[var(--accent)]"
+                className="hover:bg-[var(--surface-raised)] transition-colors"
+                style={{
+                  display: "block",
+                  background: "var(--surface)",
+                  padding: "28px 24px",
+                  textDecoration: "none",
+                }}
               >
-                <div className="flex flex-wrap items-center gap-3">
-                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--accent)]">
+                <div style={{ display: "flex", gap: 16, alignItems: "center", marginBottom: 12 }}>
+                  <p
+                    className="mono-label"
+                    style={{ fontSize: 9, letterSpacing: "0.25em", color: "var(--accent)", textTransform: "uppercase" }}
+                  >
                     {module.level}
                   </p>
-                  <span className="h-1 w-1 rounded-full bg-[var(--accent)]" />
-                  <p className="text-xs uppercase tracking-[0.16em] text-[var(--muted)]">
+                  <span style={{ width: 1, height: 10, background: "var(--border)" }} />
+                  <p
+                    className="mono-label"
+                    style={{ fontSize: 9, letterSpacing: "0.20em", color: "var(--muted)", textTransform: "uppercase" }}
+                  >
                     Python DSA
                   </p>
                 </div>
-                <h3 className="mt-3 text-2xl font-semibold text-[var(--foreground)]">
+                <h3 className="h-display" style={{ fontSize: 26, marginBottom: 8 }}>
                   {module.title}
                 </h3>
-                <p className="mt-3 max-w-3xl text-sm leading-6 text-[var(--muted)]">
+                <p className="prose-body" style={{ fontSize: "0.9rem", marginBottom: 20 }}>
                   {module.description}
                 </p>
-                <p className="mt-5 text-sm font-medium text-[var(--accent)] transition duration-300 group-hover:translate-x-1">
-                  Open lesson
+                <p
+                  className="mono-label"
+                  style={{ fontSize: 10, color: "var(--accent)", letterSpacing: "0.18em", textTransform: "uppercase" }}
+                >
+                  Open lesson →
                 </p>
               </Link>
             ))}
