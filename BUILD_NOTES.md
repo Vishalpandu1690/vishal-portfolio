@@ -1109,3 +1109,97 @@ For every future step, add:
 3. What concept it teaches
 4. What commands were run
 5. What we should do next
+
+## Two Pointers Article — Full Narrative Rebuild
+
+### What changed
+
+The Two Pointers study page was completely rebuilt from the ground up.
+
+Files changed:
+
+- [app/study/python/dsa-patterns/two-pointers/page.tsx](/Users/vishalcherupally/Documents/github/vishal-portfolio/app/study/python/dsa-patterns/two-pointers/page.tsx)
+- [app/study/python/dsa-patterns/two-pointers/two-pointers.module.css](/Users/vishalcherupally/Documents/github/vishal-portfolio/app/study/python/dsa-patterns/two-pointers/two-pointers.module.css) [NEW]
+- [components/brute-force-demo.tsx](/Users/vishalcherupally/Documents/github/vishal-portfolio/components/brute-force-demo.tsx) [NEW]
+
+### Why we changed it
+
+The previous version started with Reverse String. It explained the technique but never made the reader feel the problem first.
+
+A reference HTML prototype (`two-pointers-step1.html`) showed a better approach:
+
+- Start with a real problem (Two Sum on a sorted array)
+- Let the reader reach for the brute force instinct naturally
+- Show the cost of that instinct concretely
+- Then reveal the insight that makes Two Pointers feel inevitable
+
+The old page was vague and skipped the most important teaching step: why brute force fails.
+
+### New narrative structure
+
+The page is structured as a 5-act editorial story:
+
+1. **Act I — The Setup**: Two Sum (sorted) problem, no hints
+2. **Act II — The Brute Force Trap**: Show the nested loop, call it thoughtless, not wrong
+3. **Act III — The Real Cost**: Cost comparison table, complexity table, interactive demo
+4. **Act IV — The Insight**: Three outcomes reasoning — each comparison eliminates a direction
+5. **Act V — The Reveal**: Two Pointers introduced as the natural consequence of the insight
+
+### Visual direction chosen
+
+We adopted a dedicated dark editorial style for this lesson page that is deliberately different from the site's light design:
+
+- Black ink background (`#0d0d0d`)
+- Cream paper foreground (`#f5f0e8`)
+- Amber accent (`#e8a020`) for emphasis and identity
+- **Bebas Neue** for section headings (editorial weight)
+- **IBM Plex Mono** for labels, code, and UI chrome
+- **Crimson Pro** for body text (readable serif for long-form reading)
+- Noise texture overlay for depth
+- Scroll-reveal animations via IntersectionObserver
+- CSS module scoped to this page so it does not affect the rest of the site
+
+The site's global light design is correct for homepage and blog listings. But for a full-screen, long-form lesson like this, the dark editorial aesthetic creates the right atmosphere — it signals to the reader that this is serious, structured learning.
+
+### Key implementation decisions
+
+- **CSS module** (`two-pointers.module.css`) keeps all styles scoped to this page
+- **`next/font/google`** loads Bebas Neue, IBM Plex Mono, and Crimson Pro with CSS variables applied to the root element
+- **Client component** (`"use client"`) for IntersectionObserver scroll animations
+- **BruteForceDemo** is a standalone client component — renders the interactive n/target input and shows how many pairs the brute force checks vs Two Pointers' O(n) guarantee
+- The page overrides the global body background by setting its own dark root `<div>`, so the rest of the site is unaffected
+
+### Concepts involved
+
+- Teaching philosophy: problem-first, technique-second
+- Narrative arc in technical education
+- Why brute force is a failure mode at scale, not just a slow solution
+- The invariant: at every step, the answer is between L and R
+- O(n²) vs O(n) cost difference made tangible through an interactive demo
+- CSS modules for page-level style isolation in Next.js App Router
+- next/font/google for multiple editorial fonts
+- IntersectionObserver for scroll-triggered animations
+
+### Commands to run next
+
+After reviewing locally, commit and push with:
+
+```bash
+cd /Users/vishalcherupally/Documents/github/vishal-portfolio
+git status --short
+git add app/study/python/dsa-patterns/two-pointers/page.tsx \
+        app/study/python/dsa-patterns/two-pointers/two-pointers.module.css \
+        components/brute-force-demo.tsx \
+        BUILD_NOTES.md
+git commit -m "Rebuild Two Pointers lesson with editorial dark narrative"
+git push origin main
+```
+
+### What we should do next
+
+The natural next steps are:
+
+1. **Add the interactive step-by-step animation** — let readers click through each L/R move on the array visual in Act V
+2. **Build the Valid Palindrome lesson** as the mutation from Two Sum (same technique, selective pointer movement)
+3. **Start the Sliding Window lesson** using the same 5-act structure and editorial style
+4. **Consider a lesson template** that can be reused for each DSA pattern
