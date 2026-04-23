@@ -2,9 +2,9 @@
 import Link from "next/link";
 
 const NAV_LINKS = [
-  { label: "Blog",     href: "/blog"     },
-  { label: "Study",    href: "/study"    },
-  { label: "Projects", href: "/projects" },
+  { label: "Blog",     short: "B", href: "/blog"     },
+  { label: "Study",   short: "S", href: "/study"    },
+  { label: "Projects", short: "P", href: "/projects" },
 ];
 
 export default function Nav() {
@@ -27,38 +27,31 @@ export default function Nav() {
         padding: "0 5vw",
       }}
     >
-      {/* Site name */}
-      <Link
-        href="/"
-        style={{
-          fontFamily: "var(--font-bebas), sans-serif",
-          fontSize: 20,
-          letterSpacing: "0.08em",
-          color: "#f5f0e8",
-          textDecoration: "none",
-          lineHeight: 1,
-        }}
-      >
-        VISHAL CHERUPALLY
+      {/* Site name — full on ≥400px, initials on tiny screens */}
+      <Link href="/" style={{ textDecoration: "none", lineHeight: 1 }}>
+        <span
+          className="nav-name-full h-display"
+          style={{ fontSize: 18, letterSpacing: "0.08em", color: "#f5f0e8" }}
+        >
+          VISHAL CHERUPALLY
+        </span>
+        <span
+          className="nav-name-short h-display"
+          style={{ fontSize: 20, letterSpacing: "0.1em", color: "#f5f0e8" }}
+        >
+          VC
+        </span>
       </Link>
 
-      {/* Links */}
+      {/* Full nav — hidden on very small, shown ≥560px */}
       <nav>
-        <ul
-          style={{
-            display: "flex",
-            gap: 32,
-            listStyle: "none",
-            margin: 0,
-            padding: 0,
-          }}
-        >
+        <ul className="nav-links">
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
+                className="mono-label"
                 style={{
-                  fontFamily: "var(--font-ibm-mono), monospace",
                   fontSize: 11,
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
@@ -74,6 +67,27 @@ export default function Nav() {
                 }
               >
                 {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        {/* Compact links — visible only on tiny screens (<560px) */}
+        <ul className="nav-links-mobile">
+          {NAV_LINKS.map((link) => (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                className="mono-label"
+                style={{
+                  fontSize: 10,
+                  letterSpacing: "0.15em",
+                  textTransform: "uppercase",
+                  color: "#8a8070",
+                  textDecoration: "none",
+                }}
+              >
+                {link.short}
               </Link>
             </li>
           ))}

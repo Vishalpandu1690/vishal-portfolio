@@ -147,14 +147,7 @@ export default function SlidingWindowBlog() {
             <p className="section-label" style={{ marginBottom: 20 }}>
               Common patterns
             </p>
-            <div
-              style={{
-                display: "grid",
-                gap: 1,
-                gridTemplateColumns: "1fr 1fr",
-                background: "var(--border-subtle)",
-              }}
-            >
+            <div className="grid-2col-subtle">
               {[
                 ["Fixed window (k)", "Window size is constant. Typical in max/min sum of k elements."],
                 ["Variable window", "Window expands until a constraint breaks, then contracts."],
