@@ -264,10 +264,17 @@ export default function Chapter1Page() {
         </div>
 
         <p className={styles.prose}>
-          Every page load triggers this sequence: the browser asks the server,
-          the server queries the database, waits for the result, builds the HTML,
-          and sends it back. <strong>Nothing is cached. Nothing is pre-built.
-          Nothing is served from the edge.</strong>
+          Let’s use an example. User <strong>Alex</strong> types <code>scaleup.com</code> and hits Enter. Every page load triggers this exact sequence:
+        </p>
+        <ol className={styles.prose} style={{ paddingLeft: "1.5rem", listStyle: "decimal" }}>
+          <li style={{ marginBottom: 12 }}><strong>The browser asks the server:</strong> <code>GET /</code> (Give me the homepage).</li>
+          <li style={{ marginBottom: 12 }}><strong>The server queries the database:</strong> It connects to PostgreSQL and runs 4 separate SQL queries sequentially (e.g., <code>SELECT * FROM categories</code>, <code>SELECT * FROM products</code>...).</li>
+          <li style={{ marginBottom: 12 }}><strong>The database works:</strong> It scans tens of thousands of rows on the hard drive to find the matching data, taking full seconds.</li>
+          <li style={{ marginBottom: 12 }}><strong>The server builds the HTML:</strong> It takes the database row results and loops through them to build an HTML string: <code>&lt;ul&gt;&lt;li&gt;Product 1...&lt;/li&gt;&lt;/ul&gt;</code></li>
+          <li style={{ marginBottom: 12 }}><strong>The server sends it back:</strong> It sends this raw HTML string back to Alex&apos;s browser, along with large uncompressed CSS and JS files.</li>
+        </ol>
+        <p className={styles.prose}>
+          <strong>Nothing is cached. Nothing is pre-built. Nothing is served from the edge.</strong>
         </p>
 
         <div className={styles.insight}>
@@ -361,6 +368,42 @@ export default function Chapter1Page() {
 
         <div className={styles.divider}>before — the naive homepage</div>
 
+        <p className={styles.prose}>
+          Visually, this is what happens when Alex requests the homepage:
+        </p>
+
+        {/* Before Diagram */}
+        <div className={styles.archContainer}>
+          <div className={styles.archDiagram} style={{ padding: "24px", background: "#1a0f0f", borderColor: "#3a1515" }}>
+            <div className={styles.archBox} style={{ width: "auto", minWidth: 100 }}>
+              <div className={styles.archBoxLabel}>User</div>
+              <div className={styles.archBoxTitle}>Alex</div>
+              <div className={styles.archBoxSub}>waits 8s...</div>
+            </div>
+            
+            <div className={styles.archArrow} style={{ color: "#ef5a48" }}>→</div>
+            
+            <div className={styles.archBox} style={{ width: "auto", minWidth: 140 }}>
+              <div className={styles.archBoxLabel} style={{ color: "#ef5a48" }}>Server</div>
+              <div className={styles.archBoxTitle}>Wait...</div>
+            </div>
+            
+            <div className={styles.archArrow} style={{ color: "#ef5a48" }}>→</div>
+            
+            <div className={styles.archBox} style={{ width: "auto", minWidth: 160, borderColor: "#ef5a48", background: "#3a1515" }}>
+              <div className={styles.archBoxLabel} style={{ color: "#ef5a48" }}>Database</div>
+              <div className={styles.archBoxSub} style={{ color: "#f5f0e8" }}>1. SELECT categories</div>
+              <div className={styles.archBoxSub} style={{ color: "#f5f0e8" }}>2. SELECT stats</div>
+              <div className={styles.archBoxSub} style={{ color: "#f5f0e8" }}>3. SELECT products</div>
+              <div className={styles.archBoxSub} style={{ color: "#f5f0e8" }}>4. SELECT reviews</div>
+            </div>
+          </div>
+        </div>
+
+        <p className={styles.prose}>
+          And here is the code that causes that traffic jam:
+        </p>
+
         <div className={styles.codeBlock} data-lang="Node.js / Express">
           <pre className={styles.pre}>
 {`// ❌ BEFORE: Every request hits the database
@@ -386,6 +429,41 @@ app.get('/', async (req, res) => {
         </p>
 
         <div className={styles.divider}>after — with caching</div>
+
+        <p className={styles.prose}>
+          By caching data that doesn&apos;t change frequently, we cut the journey in half for most requests. Look at the new flow:
+        </p>
+
+        {/* After Diagram */}
+        <div className={styles.archContainer}>
+          <div className={styles.archDiagram} style={{ padding: "24px", background: "#0e1a12", borderColor: "#1a7a4a" }}>
+            <div className={styles.archBox} style={{ width: "auto", minWidth: 100 }}>
+              <div className={styles.archBoxLabel}>User</div>
+              <div className={styles.archBoxTitle}>Alex</div>
+              <div className={styles.archBoxSub}>waits 2s</div>
+            </div>
+            
+            <div className={styles.archArrow} style={{ color: "#6ab87a" }}>→</div>
+            
+            <div className={styles.archBox} style={{ width: "auto", minWidth: 140, borderColor: "#6ab87a", background: "#1a7a4a22" }}>
+              <div className={styles.archBoxLabel} style={{ color: "#6ab87a" }}>Server</div>
+              <div className={styles.archBoxSub} style={{ color: "#f5f0e8" }}>1. Get Cat (RAM)</div>
+              <div className={styles.archBoxSub} style={{ color: "#f5f0e8" }}>2. Get Stats (RAM)</div>
+            </div>
+            
+            <div className={styles.archArrow} style={{ color: "#6ab87a" }}>→</div>
+            
+            <div className={styles.archBox} style={{ width: "auto", minWidth: 160 }}>
+              <div className={styles.archBoxLabel}>Database</div>
+              <div className={styles.archBoxSub}>3. SELECT products</div>
+              <div className={styles.archBoxSub}>4. SELECT reviews</div>
+            </div>
+          </div>
+        </div>
+
+        <p className={styles.prose}>
+          Notice the difference? The server already holds the categories and stats in memory. It only asks the database for the newest products and reviews.
+        </p>
 
         <div className={styles.codeBlock} data-lang="Node.js / Express">
           <pre className={styles.pre}>
