@@ -101,7 +101,7 @@ export const systemDesignChapters: SystemDesignChapter[] = [
     topics: ["Client-Server Model", "HTTP Basics", "Database 101", "Caching Intro"],
     scale: "10 users",
     difficulty: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "02",
