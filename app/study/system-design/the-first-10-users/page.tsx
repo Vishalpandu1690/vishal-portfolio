@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Bebas_Neue, IBM_Plex_Mono, Crimson_Pro } from "next/font/google";
 import styles from "./chapter1.module.css";
 import ConceptDrawer from "@/components/concept-drawer";
+import { DEEP_DIVES, WAR_STORIES, TAKEAWAYS, TUTORIAL_STEPS, DEV_TOOLS } from "./data";
 
 /* ── Fonts ── */
 const bebas = Bebas_Neue({ weight: "400", subsets: ["latin"], variable: "--font-bebas" });
@@ -127,6 +128,7 @@ const CHALLENGE_QS = [
 /* ══════════════════════════════════════════════════════ */
 export default function Chapter1Page() {
   const [activeConceptId, setActiveConceptId] = useState<string | null>(null);
+  const [expandedDeepDive, setExpandedDeepDive] = useState<string | null>(null);
 
   const activeConcept = CONCEPT_CARDS.find((c) => c.id === activeConceptId);
 
@@ -644,6 +646,125 @@ app.use('/static', express.static('public', {
             </div>
           </div>
         ))}
+      </section>
+
+      {/* ══ ACT VII — DEEP DIVES ══ */}
+      <section className={`${styles.animSection} ${styles.act}`}>
+        <div className={styles.sectionLabel}>Act VII — Deep Dives</div>
+        <h2 className={styles.h2}>Go Deeper<br /><span className={styles.heroAccent}>(For the Curious)</span></h2>
+        
+        <div className={styles.deepDiveContainer}>
+          {DEEP_DIVES.map(dd => (
+            <div key={dd.id} className={styles.deepDiveCard}>
+              <div 
+                className={styles.deepDiveHeader} 
+                onClick={() => setExpandedDeepDive(expandedDeepDive === dd.id ? null : dd.id)}
+              >
+                <h3>{dd.title}</h3>
+                <span className={`${styles.toggleIcon} ${expandedDeepDive === dd.id ? styles.active : ""}`}>+</span>
+              </div>
+              {expandedDeepDive === dd.id && (
+                <div 
+                  className={styles.deepDiveContent}
+                  dangerouslySetInnerHTML={{ __html: dd.content }}
+                />
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ══ ACT VIII — WAR STORIES ══ */}
+      <section className={`${styles.animSection} ${styles.actDark}`}>
+        <div className={styles.sectionLabel}>Act VIII — War Stories</div>
+        <h2 className={styles.h2}>Real Companies,<br /><span className={styles.heroAccent}>Real Failures, Real Lessons</span></h2>
+        
+        <div className={styles.caseStudies}>
+          {WAR_STORIES.map(ws => (
+            <div key={ws.id} className={styles.caseStudyCard}>
+              <div className={styles.caseStudyHeader}>
+                <h3>{ws.title}</h3>
+                <div className={styles.caseStudyMeta}>
+                  {ws.tags.map(t => <span key={t} className={styles.metaTag}>{t}</span>)}
+                </div>
+              </div>
+              <div className={styles.caseStudyContent}>
+                <div className={styles.caseStudyProblem}>
+                  <h4>The Problem</h4>
+                  <p>{ws.problem}</p>
+                </div>
+                <div className={styles.caseStudySolution}>
+                  <h4>{ws.solutionTitle}</h4>
+                  <ul>
+                    {ws.solutionList.map(s => <li key={s}>{s}</li>)}
+                  </ul>
+                </div>
+                <div className={styles.caseStudyResult}>
+                  <h4>The Result</h4>
+                  <p>{ws.result}</p>
+                </div>
+                <div className={styles.caseStudyLesson}>
+                  <strong>💡 Lesson for You:</strong> {ws.lesson}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ══ ACT IX — TAKEAWAYS ══ */}
+      <section className={`${styles.animSection} ${styles.act}`}>
+        <div className={styles.sectionLabel}>Act IX — What You Learned</div>
+        <h2 className={styles.h2}>Key<br /><span className={styles.heroAccent}>Takeaways</span></h2>
+        
+        <div className={styles.conceptsGrid}>
+          {TAKEAWAYS.map((ta, i) => (
+            <div key={i} className={styles.conceptCard}>
+              <div className={styles.conceptIcon}>{ta.icon}</div>
+              <h3 className={styles.conceptTitle}>{ta.title}</h3>
+              <p className={styles.conceptBody}>{ta.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ══ ACT X — HANDS-ON TUTORIAL ══ */}
+      <section className={`${styles.animSection} ${styles.actDark}`}>
+        <div className={styles.sectionLabel}>Act X — Hands-On Tutorial</div>
+        <h2 className={styles.h2}>Build It Yourself:<br /><span className={styles.heroAccent}>The Optimized Homepage</span></h2>
+        
+        <div className={styles.tutorialSteps}>
+          {TUTORIAL_STEPS.map((ts) => (
+            <div key={ts.number} className={styles.tutorialStep}>
+              <div className={styles.stepNumber}>STEP {ts.number}</div>
+              <h3 className={styles.stepTitle}>{ts.title}</h3>
+              
+              <div className={styles.codeBlock}>
+                <div className={`${styles.codeHeader} ${styles.codeNeutral}`}>
+                  <span>{ts.codeTitle}</span>
+                </div>
+                <pre><code>{ts.code}</code></pre>
+              </div>
+              <div className={styles.stepResult}>{ts.result}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ══ ACT XI — DEV TOOLS ══ */}
+      <section className={`${styles.animSection} ${styles.act}`}>
+        <div className={styles.sectionLabel}>Act XI — Developer Tools</div>
+        <h2 className={styles.h2}>The Tools<br /><span className={styles.heroAccent}>Pros Use</span></h2>
+        
+        <div className={styles.toolsGrid}>
+          {DEV_TOOLS.map(dt => (
+            <div key={dt.id} className={styles.toolCard}>
+              <h3 className={styles.toolTitle}>{dt.icon} {dt.title}</h3>
+              <p className={styles.toolDescription}>{dt.description}</p>
+              <div className={styles.toolTip}>{dt.tip}</div>
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* ══ CLIFFHANGER ══ */}

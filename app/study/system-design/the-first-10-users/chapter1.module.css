@@ -871,3 +871,247 @@
   .archDiagram { flex-direction: column; gap: 16px; }
   .archArrow   { transform: rotate(90deg); padding: 0; }
 }
+
+/* ── DEEP DIVES ── */
+.deepDiveContainer {
+  margin: 32px 0 64px 0;
+}
+
+.deepDiveCard {
+  background: transparent;
+  border: 1px solid #2a2a2a;
+  border-radius: 4px;
+  margin-bottom: 24px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.deepDiveCard:hover {
+  border-color: #e8a020;
+}
+
+.deepDiveHeader {
+  padding: 20px 24px;
+  background: rgba(255, 255, 255, 0.02);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s;
+}
+
+.deepDiveHeader:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.deepDiveHeader h3 {
+  font-family: var(--font-crimson), serif;
+  font-size: 1.3rem;
+  color: #e8a020;
+  margin: 0;
+}
+
+.toggleIcon {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #8a8070;
+  transition: transform 0.3s;
+}
+
+.toggleIcon.active {
+  transform: rotate(45deg);
+  color: #e8a020;
+}
+
+.deepDiveContent {
+  padding: 24px;
+  border-top: 1px solid #2a2a2a;
+  color: #c8bfb0;
+  line-height: 1.8;
+  font-size: 1.05rem;
+  background: transparent;
+}
+
+.deepDiveContent h4 {
+  font-family: var(--font-bebas), sans-serif;
+  color: #e8a020;
+  margin: 32px 0 16px;
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+}
+
+/* ── WAR STORIES (CASE STUDIES) ── */
+.caseStudies {
+  margin-top: 48px;
+}
+
+.caseStudyCard {
+  background: transparent;
+  border: 1px solid #443;
+  border-radius: 4px;
+  margin-bottom: 48px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.caseStudyHeader {
+  padding: 32px;
+  background: rgba(232, 160, 32, 0.05);
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.caseStudyHeader h3 {
+  font-family: var(--font-crimson), serif;
+  font-size: 1.8rem;
+  color: #f5f0e8;
+  margin: 0 0 16px 0;
+}
+
+.caseStudyMeta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.metaTag {
+  padding: 4px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  font-size: 0.75rem;
+  border: 1px solid #333;
+  color: #c8bfb0;
+  font-family: var(--font-mono-tp), monospace;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.caseStudyContent {
+  padding: 32px;
+}
+
+.caseStudyProblem h4,
+.caseStudySolution h4,
+.caseStudyResult h4 {
+  font-family: var(--font-mono-tp), monospace;
+  font-size: 0.85rem;
+  color: #8a8070;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.caseStudyProblem p,
+.caseStudySolution p,
+.caseStudyResult p {
+  color: #c8bfb0;
+  line-height: 1.8;
+  font-size: 1.1rem;
+  margin-bottom: 32px;
+}
+
+.caseStudySolution ul {
+  list-style: none;
+  padding: 0;
+  color: #c8bfb0;
+}
+
+.caseStudySolution ul li {
+  line-height: 1.8;
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+}
+
+.caseStudyLesson {
+  background: linear-gradient(to right, rgba(232, 160, 32, 0.1), transparent);
+  border-left: 2px solid #e8a020;
+  padding: 24px;
+  border-radius: 0 4px 4px 0;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #f5f0e8;
+  margin-top: 32px;
+}
+
+/* ── TUTORIAL STEPS ── */
+.tutorialSteps {
+  margin-top: 48px;
+}
+
+.tutorialStep {
+  margin-bottom: 56px;
+}
+
+.stepNumber {
+  font-family: var(--font-mono-tp), monospace;
+  color: #e8a020;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.stepTitle {
+  font-family: var(--font-crimson), serif;
+  font-size: 1.6rem;
+  color: #f5f0e8;
+  margin-bottom: 24px;
+}
+
+.stepResult {
+  background: rgba(106, 184, 122, 0.05);
+  border-left: 2px solid #6ab87a;
+  padding: 24px;
+  border-radius: 0 4px 4px 0;
+  margin-top: 24px;
+  color: #c8bfb0;
+  font-size: 1rem;
+  font-family: var(--font-mono-tp), monospace;
+}
+
+.stepNote {
+  margin-top: 16px;
+  color: #8a8070;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* ── DEV TOOLS ── */
+.toolsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.toolCard {
+  background: transparent;
+  border: 1px solid #2a2a2a;
+  border-radius: 4px;
+  padding: 32px;
+}
+
+.toolTitle {
+  font-family: var(--font-crimson), serif;
+  font-size: 1.4rem;
+  color: #e8a020;
+  margin: 0 0 16px 0;
+}
+
+.toolDescription {
+  color: #c8bfb0;
+  line-height: 1.7;
+  font-size: 1.05rem;
+  margin-bottom: 32px;
+}
+
+.toolTip {
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 2px solid #8a8070;
+  padding: 16px 24px;
+  margin-top: 32px;
+  border-radius: 0 4px 4px 0;
+  font-size: 0.95rem;
+  color: #8a8070;
+  line-height: 1.6;
+}
+
