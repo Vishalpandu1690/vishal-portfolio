@@ -24,21 +24,19 @@ const CONCEPT_CARDS = [
     id: "client-server",
     icon: "🖥️", 
     title: "Client-Server Model",  
-    body: "The user's browser (client) sends an HTTP request → your server processes it → sends back a response. Every web interaction is this loop. The 'server' isn't magic — it's a program on a computer listening on port 80 or 443.",
+    body: "Every time a user visits your site, their browser (the client) sends a request to your application (the server). The server processes it and sends back a response.",
     drawerContent: (
       <>
+        <div className={styles.drawerSubhead}>The Real-World Analogy</div>
         <p className={styles.drawerProse}>
-          Imagine going to a restaurant. You are the <strong>Client</strong>. You look at the menu and tell the waiter what you want. You don&apos;t cook the food yourself.
-        </p>
-        <p className={styles.drawerProse}>
-          The kitchen is the <strong>Server</strong>. They receive your order (the <em>Request</em>), they gather the ingredients, they cook the meal, and they hand it back to the waiter to bring to your table (the <em>Response</em>).
+          🍕 <strong>Think of it like ordering pizza:</strong> You (the Client) call the restaurant (the Server). They make your pizza and deliver it back to you (the Response). If they&apos;re slow or understaffed, you sit there waiting, hungry.
         </p>
         <div className={styles.drawerSubhead}>The Reality of the Web</div>
         <p className={styles.drawerProse}>
           In web development, the &ldquo;client&rdquo; is a web browser (Chrome, Safari) or a mobile app running on your phone. It has limited power and doesn&apos;t have access to the main database. 
         </p>
         <p className={styles.drawerProse}>
-          The &ldquo;server&rdquo; is just another computer sitting in a massive warehouse (AWS, GCP). It runs a program — maybe written in Node.js, Python, or Go — that is in an infinite loop, constantly listening for incoming requests. When it gets one, it does the heavy lifting, talks to the database, formats the result into HTML or JSON, and sends it back across the ocean through fiber optic cables.
+          The &ldquo;server&rdquo; is just another computer sitting in a massive warehouse (AWS, GCP). It runs a program — maybe written in Node.js or Go — that is in an infinite loop, constantly listening for incoming requests. When it gets one, it does the heavy lifting, formats the result into HTML or JSON, and sends it back across the ocean through fiber optic cables.
         </p>
       </>
     )
@@ -47,24 +45,23 @@ const CONCEPT_CARDS = [
     id: "http-lifecycle",
     icon: "🔄", 
     title: "HTTP Request Lifecycle", 
-    body: "DNS lookup → TCP handshake → HTTP request → Server processing → Response → Browser render. Each step costs time. The goal: eliminate unnecessary steps and speed up the rest.",
+    body: "HTTP is the language browsers and servers speak. GET requests fetch data. POST requests send data. Every image, API call, and page load is an HTTP request.",
     drawerContent: (
       <>
+        <div className={styles.drawerSubhead}>The Real-World Analogy</div>
         <p className={styles.drawerProse}>
-          When a user types <code>scaleup.com</code> into their browser and hits Enter, a massive invisible machine hums to life. It feels instantaneous, but it is actually a complex multi-step journey.
+          📬 <strong>It&apos;s like the postal service:</strong> GET = &ldquo;Please send me my mail.&rdquo; POST = &ldquo;Here&apos;s a letter to deliver.&rdquo; Each request takes physical time to travel, especially if the post office is far away.
         </p>
-        <div className={styles.drawerSubhead}>Step 1: DNS Lookup</div>
+        <div className={styles.drawerSubhead}>The Invisible Machine</div>
         <p className={styles.drawerProse}>
-          Browsers don&apos;t know what &ldquo;scaleup.com&rdquo; is. They only understand IP addresses (like <code>192.168.1.1</code>). The browser asks a Domain Name System (DNS) server to translate the name into an IP address. Think of this as looking up a name in a phonebook.
+          When a user types <code>scaleup.com</code> into their browser and hits Enter, a complex multi-step journey begins.
         </p>
-        <div className={styles.drawerSubhead}>Step 2: TCP Handshake</div>
-        <p className={styles.drawerProse}>
-          Before data can be sent, the client and server must establish a secure connection. They send invisible packets back and forth effectively saying: &ldquo;Hello, are you there?&rdquo; — &ldquo;Yes, I am here.&rdquo; — &ldquo;Great, I am about to send data.&rdquo;
-        </p>
-        <div className={styles.drawerSubhead}>Step 3: The Request &amp; Response</div>
-        <p className={styles.drawerProse}>
-          The browser finally sends the actual HTTP Request: <em>&ldquo;GET /home&rdquo;</em>. Your Node.js server receives this, queries the database, builds the HTML, and sends it back as the Response. If any of these steps block, the user sees a blank white screen. 
-        </p>
+        <ol className={styles.drawerProse} style={{ paddingLeft: "1.5rem" }}>
+          <li><strong>DNS Lookup:</strong> Translates &quot;scaleup.com&quot; into an IP address.</li>
+          <li><strong>TCP Handshake:</strong> Establishes a secure connection between the computers.</li>
+          <li><strong>The Request:</strong> Sending the actual HTTP Request (e.g. <em>&ldquo;GET /home&rdquo;</em>).</li>
+          <li><strong>The Response:</strong> Waiting for the Node.js server to query the database, build the HTML, and send it back.</li>
+        </ol>
       </>
     )
   },
@@ -72,21 +69,19 @@ const CONCEPT_CARDS = [
     id: "database",
     icon: "🗄️", 
     title: "Database Basics",        
-    body: "Your app stores data in a relational database (PostgreSQL). Every page load queries the database. Slow queries = slow pages. The database is almost always the first bottleneck.",
+    body: "Your database stores all the data: user accounts, posts, products. When your server needs data, it queries the database. Slow queries = slow responses.",
     drawerContent: (
       <>
+        <div className={styles.drawerSubhead}>The Real-World Analogy</div>
         <p className={styles.drawerProse}>
-          A server&apos;s memory (RAM) is ephemeral. If the server restarts, everything in RAM is gone. To persist user accounts, products, and comments, you need a Database.
+          📚 <strong>The massive library:</strong> The database is a giant library. Every time you need a book, the librarian has to go find it. Without an index (the catalog), they have to search shelf by shelf. Painfully slow.
+        </p>
+        <div className={styles.drawerSubhead}>The Ultimate Bottleneck</div>
+        <p className={styles.drawerProse}>
+          A server&apos;s memory (RAM) is ephemeral. If the server restarts, everything in RAM is gone. To persist user accounts, products, and comments, you need a Database like PostgreSQL.
         </p>
         <p className={styles.drawerProse}>
-          In our case, we are using <strong>PostgreSQL</strong>, a relational database. It stores data in highly structured tables with rows and columns, much like a giant Excel spreadsheet.
-        </p>
-        <div className={styles.drawerSubhead}>The Bottleneck</div>
-        <p className={styles.drawerProse}>
-          When a request comes in, the server usually has to wait for the database. If you ask the database to &ldquo;Find the 10 newest products,&rdquo; and there are 50,000 products, the database has to scan through them. 
-        </p>
-        <p className={styles.drawerProse}>
-          Reading from a hard drive (where the database lives) is orders of magnitude slower than reading from RAM. As your startup scales, the database becomes the single heaviest anchor dragging down your speed. This is why we add <strong>Indexes</strong> — which act like the index at the back of a thick book, telling the database exactly where to look without scanning every page.
+          When a request comes in, the server usually has to wait for the database. Reading from a hard drive (where the database lives) is orders of magnitude slower than reading from RAM. As your startup scales, the database becomes the single heaviest anchor dragging down your speed.
         </p>
       </>
     )
@@ -95,24 +90,19 @@ const CONCEPT_CARDS = [
     id: "caching",
     icon: "⚡", 
     title: "Caching Fundamentals",   
-    body: "Don't compute the same thing twice. Store the result of expensive operations (DB queries, API calls, rendered HTML) in fast memory (RAM). Serve the cached copy instead of re-computing.",
+    body: "Instead of computing the same expensive operations over and over, you save (cache) the result. Next time someone asks for it, BAM—instant response.",
     drawerContent: (
       <>
+        <div className={styles.drawerSubhead}>The Real-World Analogy</div>
+        <p className={styles.drawerProse}>
+          ☕ <strong>The coffee shop:</strong> Instead of roasting beans and brewing fresh coffee exactly when a customer orders, they brew a massive pot of drip coffee in advance. The first pot takes 10 minutes to make. Every cup ordered after that? Pouring it takes 5 seconds.
+        </p>
+        <div className={styles.drawerSubhead}>The Art of Remembering</div>
         <p className={styles.drawerProse}>
           If 10,000 users visit your homepage in an hour, and the homepage shows the same list of &ldquo;Top Categories&rdquo;, why should your server ask the database to calculate the top categories 10,000 separate times?
         </p>
         <p className={styles.drawerProse}>
-          <strong>Caching</strong> is the art of remembering.
-        </p>
-        <div className={styles.drawerSubhead}>How It Works</div>
-        <p className={styles.drawerProse}>
-          The first time a user requests the homepage, the server does the hard work. It queries the database, gets the categories, and builds the HTML. 
-        </p>
-        <p className={styles.drawerProse}>
-          But before sending it to the user, the server saves a copy of that HTML string into a fast, temporary storage (usually RAM, or a dedicated cache like Redis). 
-        </p>
-        <p className={styles.drawerProse}>
-          When the second user asks for the homepage 5 milliseconds later, the server intercepts the request. It says, <em>&ldquo;I already know the answer to this!&rdquo;</em> It skips the database entirely and instantly serves the copy from the cache. The page load drops from 2,000ms to 20ms.
+          The first time a user requests the homepage, the server does the hard work. But before sending it to the user, the server saves a copy into fast, temporary storage (usually RAM). When the second user asks for the homepage 5 milliseconds later, the server instantly serves the cached copy. 2,000ms drops to 20ms.
         </p>
       </>
     )
@@ -120,9 +110,18 @@ const CONCEPT_CARDS = [
 ];
 
 const CHALLENGE_QS = [
-  { q: "Your homepage makes 6 database queries on every page load. 4 of them return the same data for every user. What do you do?", hint: "Think: which results change per-user vs. which are global?" },
-  { q: "A user uploads a 5MB profile image. Your server stores it in the database as a BLOB. Page loads spike to 4 seconds. Why? What's the fix?", hint: "Think: should large binary data live in the same place as rows and queries?" },
-  { q: "You add gzip compression to your server responses. CSS/JS files drop from 1.2s to 180ms. But the homepage still takes 3s. Where's the bottleneck now?", hint: "Think: what wasn't affected by compression?" },
+  { 
+    q: "1. What's the first bottleneck you'll hit when traffic spikes 100x on your single VPS?", 
+    options: ["A) Your caching layer will crash", "B) Your single server CPU will max out", "C) Your database connections will be exhausted", "D) Your CDN will fail"]
+  },
+  { 
+    q: "2. Your server crashes at 9:05 AM. What's the fastest initial recovery?", 
+    options: ["A) Restart the server and hope for the best", "B) Move the database to a separate machine", "C) Spin up a second server to load balance", "D) Start disabling heavy user features"]
+  },
+  { 
+    q: "3. You check the logs and see: 'Error: Connection pool exhausted'. What does this mean?", 
+    options: ["A) Your server ran out of memory", "B) Your database can't accept any more simultaneous connections", "C) The DNS lookup failed", "D) The cache is full and evicting data"]
+  },
 ];
 
 /* ══════════════════════════════════════════════════════ */
@@ -181,39 +180,45 @@ export default function Chapter1Page() {
 
         <div className={styles.narrativeBox} data-label="Narrative">
           <p>
-            It&apos;s 9 AM on a Tuesday. You&apos;ve been awake for 36 hours. The app —
-            <strong> ScaleUp</strong> — is live. Your co-founder posts the link on Twitter.
+            You click deploy. The terminal floods with green text. Build successful. Container starting. Health checks passing. <strong>Your app is live.</strong>
           </p>
           <p>
-            The first user signs up at 9:07 AM. Then another. Then three more. By 10 AM,
-            you have <em>10 registered users</em>. You refresh the analytics dashboard
-            and feel a rush of adrenaline.
+            You post the link on Twitter, Reddit, and a few Discord servers. Then you wait.
+          </p>
+
+          <div className={styles.dialogue}>
+            <div className={styles.speaker}>SLACK - #general • 9:47 AM</div>
+            <p><strong>Sarah (Co-founder):</strong> We got our first user! 🎉</p>
+            <p><strong>You:</strong> Wait, really? Who?</p>
+            <p><strong>Sarah:</strong> Some guy named Mike from Seattle. He just signed up!</p>
+            <p><strong>You:</strong> One down. 999,999 to go.</p>
+          </div>
+
+          <p>
+            By noon, you have 10 users. Ten people actually using something you built. The thrill is indescribable. You watch the logs like a hawk.
           </p>
           <p>
-            Then user #4 sends a message: <strong>&ldquo;Hey, your homepage took
-            8 seconds to load. Is this normal?&rdquo;</strong>
+            Then Sarah pings you again.
           </p>
-          <p>
-            You check. It is, in fact, normal. Your entire application —
-            frontend, backend, database — runs on a single $5/month server.
-            You wrote the code in a weekend. There is no caching. No CDN.
-            No optimization of any kind.
-          </p>
-          <p>
-            <em>It works. But it&apos;s about to stop working.</em>
-          </p>
+
+          <div className={styles.dialogue}>
+            <div className={styles.speaker}>SLACK - #general • 2:15 PM</div>
+            <p><strong>Sarah:</strong> Hey... the homepage is loading REALLY slow for me.</p>
+            <p><strong>You:</strong> How slow?</p>
+            <p><strong>Sarah:</strong> Like 10 seconds. Maybe more? Mike just emailed saying the same thing.</p>
+            <p><strong>You:</strong> [frantically opens Chrome DevTools]</p>
+          </div>
         </div>
 
         <div className={styles.crisisBox}>
           <p>
-            <strong>The homepage loads in 8 seconds.</strong>
+            <strong>8.2 seconds to first paint.</strong> Your heart sinks.
           </p>
           <p>
-            Users are bouncing before the page finishes rendering. Your bounce rate
-            is 73%. Google says anything over 3 seconds is a death sentence for retention.
+            Eight seconds is an eternity on the web. Users won&apos;t wait that long. They&apos;ll bounce. They&apos;ll never come back.
           </p>
           <p>
-            You have 10 users. <em>You&apos;re already losing them.</em>
+            You have 10 users. <em>And they&apos;re already leaving.</em>
           </p>
         </div>
       </section>
@@ -264,52 +269,25 @@ export default function Chapter1Page() {
         </div>
 
         <p className={styles.prose}>
-          Let’s use an example. User <strong>Alex</strong> types <code>scaleup.com</code> and hits Enter. Every page load triggers this exact sequence:
-        </p>
-        <ol className={styles.prose} style={{ paddingLeft: "1.5rem", listStyle: "decimal" }}>
-          <li style={{ marginBottom: 12 }}><strong>The browser asks the server:</strong> <code>GET /</code> (Give me the homepage).</li>
-          <li style={{ marginBottom: 12 }}><strong>The server queries the database:</strong> It connects to PostgreSQL and runs 4 separate SQL queries sequentially (e.g., <code>SELECT * FROM categories</code>, <code>SELECT * FROM products</code>...).</li>
-          <li style={{ marginBottom: 12 }}><strong>The database works:</strong> It scans tens of thousands of rows on the hard drive to find the matching data, taking full seconds.</li>
-          <li style={{ marginBottom: 12 }}><strong>The server builds the HTML:</strong> It takes the database row results and loops through them to build an HTML string: <code>&lt;ul&gt;&lt;li&gt;Product 1...&lt;/li&gt;&lt;/ul&gt;</code></li>
-          <li style={{ marginBottom: 12 }}><strong>The server sends it back:</strong> It sends this raw HTML string back to Alex&apos;s browser, along with large uncompressed CSS and JS files.</li>
-        </ol>
-        <p className={styles.prose}>
-          <strong>Nothing is cached. Nothing is pre-built. Nothing is served from the edge.</strong>
+          Let’s trace exactly what happens when Mike loads your homepage from Seattle:
         </p>
 
-        <div className={styles.insight}>
-          <div className={styles.insightIcon}>🔍</div>
-          <div className={styles.insightText}>
-            <strong>The real-world analogy:</strong> Imagine a restaurant where
-            the chef grows the vegetables, butchers the meat, mills the flour,
-            and bakes the bread <em>from scratch for every single order</em>.
-            That&apos;s your server right now.
-          </div>
-        </div>
-
-        <p className={styles.prose}>
-          Here&apos;s what the browser&apos;s network tab looks like:
-        </p>
-
-        {/* Speed comparison */}
-        <div className={styles.speedComparison}>
-          <div className={styles.speedRow}>
-            <span className={styles.speedLabel} style={{ color: "#444", fontSize: 10, letterSpacing: "0.2em" }}>Resource</span>
-            <span className={styles.speedSlow} style={{ color: "#444", fontSize: 10, letterSpacing: "0.2em" }}>Current</span>
-            <span className={styles.speedFast} style={{ color: "#444", fontSize: 10, letterSpacing: "0.2em" }}>Goal</span>
-            <div className={styles.speedBarWrap} />
-          </div>
-          {SPEED_ROWS.map((row) => (
-            <div key={row.label} className={styles.speedRow}>
-              <span className={styles.speedLabel}>{row.label}</span>
-              <span className={styles.speedSlow}>{row.slow}</span>
-              <span className={styles.speedFast}>{row.fast}</span>
-              <div className={styles.speedBarWrap}>
-                <div className={`${styles.speedBar} ${styles.speedBarRed}`} style={{ width: row.barW }} />
-              </div>
+        <div className={styles.codeBlock} data-lang="Trace Log" style={{ background: "#0a0a0a", borderLeft: "2px solid #e8a020" }}>
+          <div style={{ fontFamily: "var(--font-mono-tp), monospace", fontSize: "14px", lineHeight: 2, color: "#c8bfb0" }}>
+            <div><strong style={{color:"#e8a020"}}>1. Browser → Server:</strong> &quot;Give me the homepage&quot; <span style={{color:"#777"}}>(300ms - Mike is in Seattle, server is in Virginia)</span></div>
+            <div><strong style={{color:"#e8a020"}}>2. Server → Database:</strong> &quot;Get all blog posts&quot; <span style={{color:"#777"}}>(2000ms - no indexes, full table scan)</span></div>
+            <div><strong style={{color:"#e8a020"}}>3. Database → Server:</strong> Returns 500 rows <span style={{color:"#777"}}>(500ms)</span></div>
+            <div><strong style={{color:"#e8a020"}}>4. Server:</strong> Renders HTML, processes assets <span style={{color:"#777"}}>(1500ms)</span></div>
+            <div><strong style={{color:"#e8a020"}}>5. Server → Database:</strong> &quot;Get featured products&quot; <span style={{color:"#777"}}>(1200ms - another slow query)</span></div>
+            <div><strong style={{color:"#e8a020"}}>6. Database → Server:</strong> Returns data <span style={{color:"#777"}}>(400ms)</span></div>
+            <div><strong style={{color:"#e8a020"}}>7. Server → Browser:</strong> Sends back 3MB of unoptimized HTML <span style={{color:"#777"}}>(2300ms)</span></div>
+            <div style={{ marginTop: "16px", paddingTop: "16px", borderTop: "1px dashed #333", color: "#c0392b" }}>
+              <strong>TOTAL: 8.2 seconds</strong> 😱
             </div>
-          ))}
+          </div>
         </div>
+
+
       </section>
 
       {/* ══ ACT III — THE CONCEPTS ══ */}
@@ -579,65 +557,66 @@ app.use('/static', express.static('public', {
           what the system looks like:
         </p>
 
-        {/* Updated architecture */}
-        <div className={styles.archContainer}>
-          <div className={styles.archDiagram}>
-            <div className={styles.archBox}>
-              <div className={styles.archBoxLabel}>Client</div>
-              <div className={styles.archBoxTitle}>Browser</div>
-              <div className={styles.archBoxSub}>cached assets</div>
-            </div>
-
-            <div className={styles.archArrow}>→</div>
-
-            <div className={styles.archBox} style={{ borderColor: "#6ab87a" }}>
-              <div className={styles.archBoxLabel} style={{ color: "#6ab87a" }}>Server</div>
-              <div className={styles.archBoxTitle}>Node.js</div>
-              <div className={styles.archBoxSub}>+in-memory cache</div>
-            </div>
-
-            <div className={styles.archArrow}>→</div>
-
-            <div className={styles.archBox} style={{ borderColor: "#6ab87a" }}>
-              <div className={styles.archBoxLabel} style={{ color: "#6ab87a" }}>Database</div>
-              <div className={styles.archBoxTitle}>PostgreSQL</div>
-              <div className={styles.archBoxSub}>+indexed queries</div>
-            </div>
-          </div>
-          <div className={styles.archCaption}>
-            Same machine. Same $5/mo. But 10× faster.
-          </div>
+        {/* The Transformation Table */}
+        <div className={styles.tableWrap}>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th>Step</th>
+                <th>Before</th>
+                <th>After</th>
+                <th>Improvement</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Network latency</td>
+                <td className={styles.timeSlow}>300ms</td>
+                <td className={styles.timeFast}>300ms</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>Database queries</td>
+                <td className={styles.timeSlow}>3200ms</td>
+                <td className={styles.timeFast}>1ms</td>
+                <td>-99.97%</td>
+              </tr>
+              <tr>
+                <td>Server processing</td>
+                <td className={styles.timeSlow}>1500ms</td>
+                <td className={styles.timeFast}>50ms</td>
+                <td>-96.7%</td>
+              </tr>
+              <tr>
+                <td>Response download</td>
+                <td className={styles.timeSlow}>2300ms</td>
+                <td className={styles.timeFast}>50ms</td>
+                <td>-97.8%</td>
+              </tr>
+              <tr>
+                <td>Static assets (CDN)</td>
+                <td className={styles.timeSlow}>900ms</td>
+                <td className={styles.timeFast}>0ms</td>
+                <td>-100%</td>
+              </tr>
+              <tr className={styles.tableTotal}>
+                <td>TOTAL</td>
+                <td className={styles.timeSlow}>8.2s</td>
+                <td className={styles.timeFast}>401ms</td>
+                <td className={styles.timeFast}>-95.1%</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
-        <div className={styles.stepTracker}>
-          <div className={`${styles.stepItem} ${styles.stepActive}`}>
-            <div className={styles.stepNum}>01</div>
-            <div className={styles.stepBody}>
-              <strong>In-memory cache</strong> — categories & stats served from RAM.
-              2 fewer DB queries per page load.
-            </div>
-          </div>
-          <div className={`${styles.stepItem} ${styles.stepActive}`}>
-            <div className={styles.stepNum}>02</div>
-            <div className={styles.stepBody}>
-              <strong>Database indexes</strong> — product listing drops from 1,847ms → 0.4ms.
-              The DB reads 12 rows instead of scanning 50,000.
-            </div>
-          </div>
-          <div className={`${styles.stepItem} ${styles.stepActive}`}>
-            <div className={styles.stepNum}>03</div>
-            <div className={styles.stepBody}>
-              <strong>Static file caching</strong> — CSS/JS/images cached in the browser for 7 days.
-              After the first visit, assets load in ~0ms.
-            </div>
-          </div>
+        <div className={styles.narrativeBox} data-label="Result">
+          <p>
+            You refresh Sarah&apos;s Slack message. <strong>&ldquo;Homepage loads instantly now. Amazing!&rdquo;</strong>
+          </p>
+          <p>
+            Mike emails: <strong>&ldquo;Wow, did you just fix that? Feels like a different app!&rdquo;</strong>
+          </p>
         </div>
-
-        <p className={styles.prose}>
-          <strong>Total cost of these changes: $0.</strong> No new servers.
-          No new services. No paid tools. Just understanding how the system
-          spends its time and eliminating waste.
-        </p>
       </section>
 
       {/* ══ ACT VI — TEST YOURSELF ══ */}
@@ -649,16 +628,20 @@ app.use('/static', express.static('public', {
         </h2>
 
         <p className={styles.prose}>
-          Before moving on, see if you can reason through these scenarios.
-          No trick questions — just real problems that come from the same
-          fundamentals you just learned.
+          You&apos;ve fixed the homepage. Your 10 users are happy. But now you&apos;re getting traction on Twitter. A tech influencer with 50K followers is about to tweet about you tomorrow morning at 9 AM EST.
+        </p>
+        <p className={styles.prose}>
+          <strong>Your current setup:</strong> Single server (2 CPU, 4GB RAM), PostgreSQL database, and an in-memory cache running on the same machine. Everything works great... for 10 users.
         </p>
 
         {CHALLENGE_QS.map((cq, i) => (
           <div key={i} className={styles.challengeBox}>
-            <div className={styles.challengeNum}>Challenge {String(i + 1).padStart(2, "0")}</div>
             <p className={styles.challengeQ} dangerouslySetInnerHTML={{ __html: cq.q }} />
-            <div className={styles.challengeHint}>💡 Hint: {cq.hint}</div>
+            <div className={styles.options}>
+              {cq.options.map((opt, j) => (
+                <div key={j} className={styles.option}>{opt}</div>
+              ))}
+            </div>
           </div>
         ))}
       </section>
