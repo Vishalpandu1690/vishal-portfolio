@@ -322,8 +322,7 @@ app.get('/', async (req, res) => {
     <p>Loaded \${posts.rows.length} posts in \${duration}ms</p>
   \`);
 });
-
-app.listen(3000);\`,
+app.listen(3000);`,
     result: "⏱️ Test this: Load http://localhost:3000 and check the load time. With 500 posts, expect 2000+ ms."
   },
   {
@@ -365,7 +364,7 @@ app.get('/', async (req, res) => {
   }
   
   res.send(\`<p>Loaded \${posts.length} posts</p>\`);
-});\`,
+});`,
     result: "✅ Result: First request: ~12ms (DB with index). Next requests: ~1ms (cache)"
   },
   {
