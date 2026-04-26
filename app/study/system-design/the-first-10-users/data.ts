@@ -298,7 +298,7 @@ export const TUTORIAL_STEPS = [
     number: "01",
     title: "Set Up Your Basic Server",
     codeTitle: "server.js (Node.js + Express)",
-    code: \`const express = require('express');
+    code: `const express = require('express');
 const { Pool } = require('pg');
 const app = express();
 
@@ -329,7 +329,7 @@ app.listen(3000);`,
     number: "02",
     title: "Add Database Indexes",
     codeTitle: "migrations/001_add_indexes.sql",
-    code: \`-- Create index on created_at for fast sorting
+    code: `-- Create index on created_at for fast sorting
 CREATE INDEX idx_posts_created_at ON blog_posts(created_at DESC);
 
 -- Analyze the improvement
@@ -337,14 +337,14 @@ EXPLAIN ANALYZE
 SELECT * FROM blog_posts 
 WHERE status = 'published' 
 ORDER BY created_at DESC 
-LIMIT 10;\`,
+LIMIT 10;`,
     result: "✅ Expected improvement: Query time drops from ~2000ms → ~12ms"
   },
   {
     number: "03",
     title: "Add Redis Caching",
     codeTitle: "server.js (Add caching)",
-    code: \`const redis = require('redis');
+    code: `const redis = require('redis');
 const client = redis.createClient();
 await client.connect();
 
@@ -371,7 +371,7 @@ app.get('/', async (req, res) => {
     number: "04",
     title: "Enable GZIP Compression",
     codeTitle: "server.js (Add compression)",
-    code: \`const compression = require('compression');
+    code: `const compression = require('compression');
 
 // Enable GZIP compression for all responses
 app.use(compression({
@@ -379,7 +379,7 @@ app.use(compression({
   threshold: 1024 // only compress if > 1KB
 }));
 
-// 100KB HTML → ~10KB over the wire\`,
+// 100KB HTML → ~10KB over the wire`,
     result: "✅ Result: Response size reduced by 90%. Users on slow connections rejoice."
   }
 ];
